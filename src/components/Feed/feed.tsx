@@ -1,6 +1,8 @@
 import React from 'react'
 import TeacherBox from './Teacher-box/TeacherBox'
 
+
+
 const Feed = () => {
   return (
     <>
@@ -11,12 +13,7 @@ const Feed = () => {
             <div id="new-teachers" className="mt-[-1rem] pl-40">
                 <h1 className="text-3xl mb-4">Novos Professores</h1>
                 <div className='flex flex-row overflow-clip hover:overflow-x-auto'>
-                    <TeacherBox />
-                    <TeacherBox />
-                    <TeacherBox />
-                    <TeacherBox />
-                    <TeacherBox />
-                    <TeacherBox />
+                    {/* Usage: <TeacherBox name='-name-' ocuppation='-ocuppation-' picture='-url-'/> */}
                 </div>
             </div>
         </div> 
