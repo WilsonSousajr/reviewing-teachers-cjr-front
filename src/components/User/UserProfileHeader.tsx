@@ -28,14 +28,17 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({ name, department,
                                     <p className="text-gray-600">
                                         <FaEnvelope className="inline mr-2" />{email}
                                     </p>
-                        <div className="mt-4 flex space-x-4">
-                            <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 flex items-center">
-                                <FaUserEdit className="mr-2" /> Editar Perfil
-                            </button> 
-                            <button className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700 flex items-center">
-                                <FaTrash className="mr-2" /> Excluir Perfil
-                            </button>
-                        </div>
+                                </div>
+                            </div>
+                            <div className="mt-4 flex flex-col gap-3 mr-10">
+                                <button className="w-36 h-12 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 flex items-center">
+                                    <FaUserEdit className="mr-2" /> Editar Perfil
+                                </button> 
+                                <button className="w-36 h-12 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700 flex items-center">
+                                    <FaTrash className="mr-2" /> Excluir Perfil
+                                </button>
+                            </div>
+                        </div>    
                     </div>
                 </div>
             </div>
