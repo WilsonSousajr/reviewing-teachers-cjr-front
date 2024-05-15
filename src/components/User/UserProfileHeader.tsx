@@ -10,7 +10,7 @@ interface UserProfileHeaderProps {
     bannerUrl: string;
 }
 
-const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({ name, department, email, avatarUrl }) => {
+const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({ name, department, email, avatarUrl, bannerUrl }) => {
     return (
         <div className='bg-gray-100 rounded-lg shadow-md p-2'>
             <div className='flex items-center space-x-4'>
