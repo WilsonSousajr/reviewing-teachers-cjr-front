@@ -12,23 +12,22 @@ interface UserProfileHeaderProps {
 
 const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({ name, department, email, avatarUrl, bannerUrl }) => {
     return (
-        <div className='bg-gray-100 rounded-lg shadow-md p-2'>
-            <div className='flex items-center space-x-4'>
-                <div className='relative'>
-                    <Image 
-                        src={avatarUrl}
-                        alt="Profile Picture"
-                        className="rounded-full"
-                        layout="responsive"
-                        width={48}
-                        height={48}
-                    />
-                    <div className="flex flex-col ml-6">
-                        <h1 className="text-2xl font-bold">{name}</h1>
-                        <p className="text-gray-600">{department}</p>
-                        <p className="text-gray-600">
-                            <FaEnvelope className="inline mr-2" />{email}
-                        </p>
+        <div className='bg-gray-100 rounded-lg shadow-md'>
+            <div className='flex'>
+                <div className='w-full'>
+                    <div>
+                        <img src={bannerUrl} alt="Banner" className='w-full rounded-t-lg' />
+                    </div>
+                    <div className="p-6">
+                        <div className="flex justify-between">
+                            <div className="flex flex-col gap-1 ml-10">
+                                <img src={avatarUrl} alt="Avatar"  className='w-32 h-32 rounded-full'/>
+                                <div className='flex flex-col items-start gap-2'> 
+                                    <h1 className="text-2xl font-bold">{name}</h1>
+                                    <p className="text-gray-600">{department}</p>
+                                    <p className="text-gray-600">
+                                        <FaEnvelope className="inline mr-2" />{email}
+                                    </p>
                         <div className="mt-4 flex space-x-4">
                             <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 flex items-center">
                                 <FaUserEdit className="mr-2" /> Editar Perfil
