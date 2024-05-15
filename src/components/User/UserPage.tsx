@@ -39,6 +39,7 @@ const UserPage: React.FC = () => {
                 department= {user.department}
                 email={user.email}
                 avatarUrl={user.avatarUrl}	
+                bannerUrl={user.bannerUrl}
             />
 
             <div className="mt-8">
