@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import { FaComment, FaShareSquare } from 'react-icons/fa';
+import { FaComment, FaShareSquare, FaRegEdit, FaTrash } from 'react-icons/fa';
 
 interface UserPostProps {
     avatarUrl: string;
