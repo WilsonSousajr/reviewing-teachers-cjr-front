@@ -15,7 +15,7 @@ const UserPage: React.FC = () => {
 
     const posts = [
         {
-            avatarUrl: "/public/profile-pic.png",
+            avatarUrl: "http://localhost:3000/images/profile-pic.png",
             userName: "Morty Gamer",
             date: "17/04/2024, às 21:42",
             title: "João Frango - Surf",
@@ -23,7 +23,7 @@ const UserPage: React.FC = () => {
             commentsCount: 2,
         },
         {
-            avatarUrl: "/public/profile-pic.png",
+            avatarUrl: "http://localhost:3000/images/profile-pic.png",
             userName: "Morty Gamer",
             date: "15/04/2024, às 21:42",
             title: "Rick - Viagem Interdimensional",
