@@ -8,7 +8,8 @@ const UserPage: React.FC = () => {
     name: "Morty Gamer",
     department: "Ciência da Computação / Dept. Ciência da Computação",
     email: "Morty.gamer.23@cjr.org.br",
-    avatarUrl: "/public/profile-pic.png",
+    avatarUrl: "http://localhost:3000/images/profile-pic.png",
+    bannerUrl: "http://localhost:3000/images/banner.png"
   }
 
 
