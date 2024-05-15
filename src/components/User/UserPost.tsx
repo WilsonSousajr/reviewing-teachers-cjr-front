@@ -31,13 +31,24 @@ const UserPost: React.FC<UserPostProps> = ({ avatarUrl, userName, date, title, c
             <p className="mt-4 text-gray-800">
                 {content}
             </p>
-            <div className="mt-4 flex space-x-4">
-                <button className="flex items-center text-gray-600 hover:text-gray-800"> 
-                    <FaComment className="mr-2" /> {commentsCount} comentários
-                </button>
-                <button className="flex items-center text-gray-600 hover:text-gray-800">
-                    <FaShareSquare className="mr-2" /> Compartilhar
-                </button>"
+            <div className="mt-4 flex justify-between">
+                <div className="flex gap-4">
+                    <button className="flex items-center text-gray-600 hover:text-gray-800"> 
+                        <FaComment className="mr-2" /> {commentsCount} comentários
+                    </button>
+                    <button className="flex items-center text-gray-600 hover:text-gray-800">
+                        <FaShareSquare className="mr-2" /> Compartilhar
+                    </button>
+                </div>
+                <div className="flex gap-4">
+                    <button className="flex items-center text-gray-600 hover:text-gray-800">
+                        <FaRegEdit className="mr-2" /> 
+                    </button>
+                    <button className="flex items-center text-gray-600 hover:text-gray-800">
+                        <FaTrash className="mr-2" /> 
+                    </button>
+                </div>
+                
             </div>
         </div>
     )
