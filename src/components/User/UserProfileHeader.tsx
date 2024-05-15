@@ -7,6 +7,7 @@ interface UserProfileHeaderProps {
     department: string;
     email: string;
     avatarUrl: string;
+    bannerUrl: string;
 }
 
 const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({ name, department, email, avatarUrl }) => {
