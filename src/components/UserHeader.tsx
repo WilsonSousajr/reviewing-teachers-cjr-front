@@ -11,7 +11,7 @@ interface UserProfileHeaderProps {
     bannerUrl: string;
 }
 
-const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({ name, department, email, avatarUrl, bannerUrl }) => {
+const UserProfileHeader: React.FC <UserProfileHeaderProps> = ({ name, department, email, avatarUrl, bannerUrl }) => {
     return (
         <div className='bg-gray-100 rounded-lg shadow-md'>
             <div className='flex'>
@@ -25,10 +25,9 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({ name, department,
                                 <img src={avatarUrl} alt="Avatar"  className='w-32 h-32 rounded-full'/>
                                 <div className='flex flex-col items-start gap-2'> 
                                     <h1 className="text-2xl font-bold">{name}</h1>
-                                    <img src="FaPredio.png" alt="" className="inline mr-2" /><p className="text-gray-600">{department}</p>
+                                    <img src="FaPredio.png" alt="" className="h-24 w-24" /><p className="text-gray-600">{department}</p>
                                     <p className="text-gray-600">
-                                        <img src="FaEnvelope.png" alt="" className="inline mr-2" />{email}
-                                    </p>
+                                        <img src="FaEnvelope.png" alt="" className="inline mr-2" />{email}</p>
                                 </div>
                             </div>
                             <div className="mt-4 flex flex-col gap-3 mr-10">
