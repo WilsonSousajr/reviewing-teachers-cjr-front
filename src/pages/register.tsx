@@ -1,11 +1,15 @@
 "use client";
 
 import Button from '@/components/Button';
+import Foca from '@/images/foca.jpg.jpg';
+import Image from 'next/image';
 
 export default function Register () { 
     return(
         <main className="flex">
-         <div id="blank" className="w-1/2 h-screen"></div>
+         <div id="blank" className="w-1/2 h-screen">
+            <Image className="w-full h-full" src={Foca} alt="imagem de uma foca com computador"/>
+         </div>
           <div className="w-1/2 h-screen text-white  bg-darkblue flex flex-col justify-evenly items-center">
            <div className="w-1/3 h-fit">
               <h1 className="text-5xl text-center text-white">Cadastro Usuário</h1>
