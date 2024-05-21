@@ -16,4 +16,4 @@ const UnloggedHeader = () => {
   )
 }
 
-export default UnloggedHeader
+export default UnloggedHeader;
