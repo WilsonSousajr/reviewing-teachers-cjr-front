@@ -3,6 +3,7 @@
 import Button from '@/components/Button';
 import Foca from '@/images/foca.jpg.jpg';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Register () { 
     return(
@@ -24,7 +25,9 @@ export default function Register () {
                 </form>
             </div> 
             <div className="flex justify-center gap-10">
-            <Button>Criar Conta</Button>
+            <Link href="/feed/unlogged" passHref>
+                <Button>Criar Conta</Button>
+            </Link>
        </div>   
           </div>
         </main>
