@@ -25,7 +25,7 @@ export default function Register () {
                 </form>
             </div> 
             <div className="flex justify-center gap-10">
-            <Link href="/feed/unlogged" passHref>
+            <Link href="/" passHref>
                 <Button>Criar Conta</Button>
             </Link>
        </div>   
