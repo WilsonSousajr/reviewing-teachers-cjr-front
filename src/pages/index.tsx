@@ -1,14 +1,12 @@
-"use client";
+import UnloggedHeader from "@/components/Header/unloggedHeader";
+import Feed from "@/components/Feed/feed";
 
-import Button from '@/components/Button';
-import Foca from '@/images/foca.jpg.jpg';
-import Image from 'next/image';
-
-export default function Register () { 
+export default function unllogedFeed(){
     return(
-        <main className="flex">
-         Main Page
-         SAI DAQUI!!!!
+        <main>
+            <UnloggedHeader />    
+            <Feed />
+                   
         </main>
-    );
-};
+    )
+}
