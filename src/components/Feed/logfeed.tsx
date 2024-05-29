@@ -3,12 +3,24 @@ import TeacherBox from './Teacher-box/TeacherBox'
 import MyButton from '../Button/MyButton'
 import Link from 'next/link'
 
+
 function LogFeed() {
     const [dropdownAberto, setDropdownAberto] = useState(false);
 
     const toggleDropdown = () => {
     setDropdownAberto(!dropdownAberto);
     };
+
+    const onclose = () =>{
+        window.close();
+    };
+
+function openmodal(){
+    const modal = document.getElementById('comment');
+    modal?.classList.add('open');
+}
+
+
 
     return (
         <>
@@ -36,6 +48,7 @@ function LogFeed() {
                         className='bg-lightblue text-white text-xl py-1 px-8 rounded-xl outline outline-white outline-2 shadow-black shadow-md'> Nova Publicação
 
                         </button>
+
                     <div className='block'>
                         <button onClick={toggleDropdown} id="dropdownHoverButton" data-dropdown-toggle="dropdownHover" data-dropdown-trigger="hover" type="button"
                         className='bg-lightblue text-white text-xl py-1 px-8 rounded-xl outline outline-white outline-2 shadow-black shadow-md'>Ordenar</button>{dropdownAberto &&(
