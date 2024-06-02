@@ -1,11 +1,15 @@
-import React, { useState} from 'react'
+import React, { FormEvent, useState} from 'react'
 import TeacherBox from './Teacher-box/TeacherBox'
 import MyButton from '../Button/MyButton'
 import Link from 'next/link'
-
+//importações do modal
+import { ErrorMessage, Field, Form, Formik, FormikHelpers, FormikValues, useFormik } from 'formik'
+import { DocumentProps } from 'next/document'
+import Modal from '../modals/modal'
 
 function LogFeed() {
     const [dropdownAberto, setDropdownAberto] = useState(false);
+    const [openModal, setOpenModal] = useState(false);
 
     const toggleDropdown = () => {
     setDropdownAberto(!dropdownAberto);
@@ -15,12 +19,17 @@ function LogFeed() {
         window.close();
     };
 
-function openmodal(){
-    const modal = document.getElementById('comment');
-    modal?.classList.add('open');
-}
+    const popUp = () => {
+        setOpenModal(!openModal);
+        };
 
-
+        function handleSubmit(event: FormEvent<HTMLFormElement>): void {
+            throw new Error('Function not implemented.')
+        };
+        
+        function initialValues (event: FormEvent<HTMLFormElement>): void {
+            throw new Error('Function not implemented.')
+        } ;
 
     return (
         <>
@@ -44,10 +53,28 @@ function openmodal(){
                     </div>   
                 </div>
                 <div id='DropDown' className="flex justify-end mr-28 relative space-x-3">
-                        <button type="button"
-                        className='bg-lightblue text-white text-xl py-1 px-8 rounded-xl outline outline-white outline-2 shadow-black shadow-md'> Nova Publicação
+                        <button
+                        className='bg-lightblue text-white text-xl py-1 px-8 rounded-xl outline outline-white outline-2 shadow-black shadow-md'
+                        onClick= {popUp} > Nova Publicação
+                        </button>{openModal && (
+<div id= "popup" className="fixed z-50 top-0 left-0 w-full h-full bg-darkblue bg-opacity-50 flex justify-center items-center">
+        <div 
+        className="bg-darkblue w-3/5 h-3/5 p-8 rounded-xl">
 
-                        </button>
+
+
+
+<div className="fixed z-100 top-0 left-0 w-full h-full bg-opacity-50 flex justify-center items-center">
+                    <div className="bg-verdeEscuro w-2/4 h-auto p-8 rounded-xl">  
+                    <div className="flex gap-5 justify-end">
+                                    <button id= 'cancel' onClick={() => setOpenModal(false)} type="button" className="bg-darkblue text-white text-xl py-1 px-8 rounded-xl outline outline-white outline-2 shadow-black shadow-md">Cancelar</button>
+                                    <button type="submit" className="bg-lightblue text-white text-xl py-1 px-8 rounded-xl outline outline-white outline-2 shadow-black shadow-md">Avaliar</button>
+                                </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+     )}
 
                     <div className='block'>
                         <button onClick={toggleDropdown} id="dropdownHoverButton" data-dropdown-toggle="dropdownHover" data-dropdown-trigger="hover" type="button"
