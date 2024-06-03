@@ -10,6 +10,8 @@ import Modal from '../modals/modal'
 function LogFeed() {
     const [dropdownAberto, setDropdownAberto] = useState(false);
     const [openModal, setOpenModal] = useState(false);
+    const [dropdownNomeProfAberto, setDropdownNomeProfAberto] = useState(false);
+    const [dropdownDisciplinaAberto, setDropdownDisciplinaAberto] = useState(false);
 
     const toggleDropdown = () => {
     setDropdownAberto(!dropdownAberto);
@@ -21,6 +23,14 @@ function LogFeed() {
 
     const popUp = () => {
         setOpenModal(!openModal);
+        };
+
+    const nomeProf = () => {
+        setDropdownNomeProfAberto(!dropdownNomeProfAberto);
+        };
+
+    const disciplina = () => {
+        setDropdownDisciplinaAberto(!dropdownDisciplinaAberto);
         };
 
         function handleSubmit(event: FormEvent<HTMLFormElement>): void {
@@ -61,11 +71,46 @@ function LogFeed() {
         <div 
         className="bg-darkblue w-3/5 h-3/5 p-8 rounded-xl">
 
-
-
-
 <div className="fixed z-100 top-0 left-0 w-full h-full bg-opacity-50 flex justify-center items-center">
                     <div className="bg-verdeEscuro w-2/4 h-auto p-8 rounded-xl">  
+                    <div className="flex justify-start gap-5">
+                    <div className='block'>
+                        <button onClick={nomeProf} id="nomeProfButton" data-dropdown-toggle="dropdownHover" data-dropdown-trigger="hover" type="button"
+                        className=' bg-lightblue text-white text-xl py-1 px-8 rounded-xl outline outline-white outline-2 shadow-black shadow-md'>Nome do Professor</button>{dropdownNomeProfAberto &&(
+                            <div id="dropdownNomeProfHover" className='z-10 bg-slate-300 px-2 divide-y divide-black rounded-lg shadow w-60 ml-[-7rem] mb-[-6rem] overflow-visible mt-[3px]'>
+                                <a className='text-black py-1 px-3 block' href=''>Prof 1</a>
+                                <a className='text-black py-1 px-3 block' href=''>Prof 2</a>
+                                <a className='text-black py-1 px-3 block' href=''>Prof 3</a>
+                            </div>
+                        )}
+
+                    </div>
+                    <div className='block'>
+                        <button onClick={disciplina} id="disciplinaButton" data-dropdown-toggle="dropdownHover" data-dropdown-trigger="hover" type="button"
+                        className='bg-lightblue text-white text-xl py-1 px-8 rounded-xl outline outline-white outline-2 shadow-black shadow-md'>Disciplina</button>{dropdownDisciplinaAberto &&(
+                            <div id="dropdownDisciplinaHover" className='z-10 bg-slate-300 px-2 divide-y divide-black rounded-lg shadow w-60 ml-[-7rem] mb-[-6rem] overflow-visible mt-[3px]'>
+                                <a className='text-black py-1 px-3 block' href=''>Disciplina 1</a>
+                                <a className='text-black py-1 px-3 block' href=''>Disciplina 2</a>
+                                <a className='text-black py-1 px-3 block' href=''>Disciplina 3</a>
+                            </div>
+                        )}
+
+                    </div>
+                    </div>
+                    <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+                            <Form>
+
+                                <div className="scale-150 flex justify-center">
+                                    <Field 
+                                        as="textarea"
+                                        name="textoAvaliacao"
+                                        placeholder="Texto da avaliação"
+                                        className=""
+                                    />
+                                    <ErrorMessage name="textoAvaliacao" component="div" className="text-red-500 text-sm mt-1" />
+                                </div>
+                                </Form>
+                        </Formik>
                     <div className="flex gap-5 justify-end">
                                     <button id= 'cancel' onClick={() => setOpenModal(false)} type="button" className="bg-darkblue text-white text-xl py-1 px-8 rounded-xl outline outline-white outline-2 shadow-black shadow-md">Cancelar</button>
                                     <button type="submit" className="bg-lightblue text-white text-xl py-1 px-8 rounded-xl outline outline-white outline-2 shadow-black shadow-md">Avaliar</button>
