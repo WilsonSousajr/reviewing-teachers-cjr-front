@@ -1,55 +1,122 @@
-import React, { Children, FormEvent } from 'react';
-import { useState } from 'react';
-import { ErrorMessage, Field, Form, Formik, FormikHelpers, FormikValues, useFormik } from 'formik'
-import { DocumentProps } from 'next/document'
+import React from "react";
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import * as Yup from "yup";
+import { toast } from "react-toastify";
 
-function handleSubmit(event: FormEvent<HTMLFormElement>): void {
-    throw new Error('Function not implemented.')
-};
+interface AvaliacaoModalProps {
+  isOpen: boolean;
+  onClose?: () => void;
+}
 
-function initialValues (event: FormEvent<HTMLFormElement>): void {
-    throw new Error('Function not implemented.')
-} ;
+const AvaliacaoModal: React.FC<AvaliacaoModalProps> = ({ isOpen, onClose }) => {
+  const initialValues = {
+    nomeProf: "",
+    nomeDisciplina: "",
+    textoAvaliacao: "",
+  };
 
-export default function Modal ({ closeModal }) { 
+  const handleSubmit = (
+    values: any,
+    { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }
+  ) => {
+    //enviar os dados do formulário (autenticação)
+
+    setTimeout(() => {
+      setSubmitting(false);
+      toast.success("Avaliação postada com sucesso!");
+    }, 2000);
+  };
+
+  const validationSchema = Yup.object({
+    nomeProf: Yup.string().required("O nome do professor é obrigatório."),
+    nomeDisciplina: Yup.string().required(
+      "O nome da disciplina é obrigatório."
+    ),
+    textoAvaliacao: Yup.string().required(
+      "O texto da avaliação é obrigatório."
+    ),
+  });
 
 
-    return ( 
-        <> 
-        <dialog>
-        <div id= "popup" className="fixed z-50 top-0 left-0 w-full h-full bg-darkblue bg-opacity-50 flex justify-center items-center">
-                <div 
-                className="bg-darkblue w-3/5 h-3/5 p-8 rounded-xl">
-        
-        
-        
-        
-        <div className="fixed z-100 top-0 left-0 w-full h-full bg-opacity-50 flex justify-center items-center">
-                            <div className="bg-verdeEscuro w-2/4 h-auto p-8 rounded-xl">
-                            <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-                            <Form>
-
-                                <div className="scale-150 flex justify-center">
-                                    <Field 
-                                        as="textarea"
-                                        name="textoAvaliacao"
-                                        placeholder="Texto da avaliação"
-                                        className=""
-                                    />
-                                    <ErrorMessage name="textoAvaliacao" component="div" className="text-red-500 text-sm mt-1" />
-                                </div>
-                                </Form>
-                        </Formik>
-                        <div className="flex gap-5 justify-end">
-                                    <button id= 'cancel' onClick={() => closeModal(false)} type="button" className="bg-darkblue text-white text-xl py-1 px-8 rounded-xl outline outline-white outline-2 shadow-black shadow-md">Cancelar</button>
-                                    <button type="submit" className="bg-lightblue text-white text-xl py-1 px-8 rounded-xl outline outline-white outline-2 shadow-black shadow-md">Avaliar</button>
-                                </div>
-                                
-                    </div>
+  return (
+    <>
+      {isOpen && (
+        <div
+          id="popup"
+          
+          className="fixed z-50 top-0 left-0 w-full h-full bg-darkblue bg-opacity-50 flex justify-center items-center"
+        >
+          <div 
+          
+          className="bg-darkblue w-3/5 h-3/5 p-8 rounded-xl" >
+            <Formik
+              initialValues={initialValues}
+              validationSchema={validationSchema}
+              onSubmit={handleSubmit}
+            >
+              <Form>
+                <div className="mb-4">
+                  <Field
+                    type="text"
+                    name="nomeProf"
+                    placeholder="Nome do Professor"
+                    className="w-full h-10 bg-white text-gray-600 px-4 rounded-full"
+                  />
+                  <ErrorMessage
+                    name="nomeProf"
+                    component="div"
+                    className="text-red-500 text-sm mt-1"
+                  />
                 </div>
-            </div>
-        </div>
-        </dialog>
-        </>
-    )
+                <div className="mb-4">
+                  <Field
+                    type="text"
+                    name="nomeDisciplina"
+                    placeholder="Nome da Disciplina"
+                    className="w-full h-10 bg-white text-gray-600 px-4 rounded-full"
+                  />
+                  <ErrorMessage
+                    name="nomeDisciplina"
+                    component="div"
+                    className="text-red-500 text-sm mt-1"
+                  />
+                </div>
+                <div className="mb-4">
+                  <Field
+                    as="textarea"
+                    name="textoAvaliacao"
+                    placeholder="Texto da Avaliação"
+                    className="w-full h-40 bg-gray-400 text-black placeholder-gray-600 px-4 py-2 rounded-lg"
+                  />
+                  <ErrorMessage
+                    name="textoAvaliacao"
+                    component="div"
+                    className="text-red-500 text-sm mt-1"
+                  />
+                </div>
+                <div className="flex gap-5 justify-end">
+                  <button
+                    id="cancel"
+                    onClick={onClose}
+                    type="button"
+                    className="bg-darkblue text-white text-xl py-1 px-8 rounded-xl outline outline-white outline-2 shadow-black shadow-md"
+                  >
+                    Cancelar
+                  </button>
+                  <button
+                    type="submit"
+                    className="bg-lightblue text-white text-xl py-1 px-8 rounded-xl outline outline-white outline-2 shadow-black shadow-md"
+                  >
+                    Avaliar
+                  </button>
+                </div>
+              </Form>
+            </Formik>
+          </div>
+          </div>
+      )}
+    </>
+  );
 };
+
+export default AvaliacaoModal;
