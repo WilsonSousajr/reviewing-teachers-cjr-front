@@ -1,20 +1,5 @@
 import React, { FormEvent, useState } from "react";
 import TeacherBox from "./Teacher-box/TeacherBox";
-import MyButton from "../Button/MyButton";
-import Link from "next/link";
-//importações do modal
-import {
-  ErrorMessage,
-  Field,
-  Form,
-  Formik,
-  FormikHelpers,
-  FormikValues,
-  useFormik,
-} from "formik";
-import { DocumentProps } from "next/document";
-import Modal from "../modals/modal";
-//modal teste
 import AvaliacaoModalProps from "../modals/modal";
 
 
