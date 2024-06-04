@@ -85,7 +85,7 @@ const AvaliacaoModal: React.FC<AvaliacaoModalProps> = ({ isOpen, onClose }) => {
                   <Field
                     as="textarea"
                     name="textoAvaliacao"
-                    placeholder="Texto da Avaliação"
+                    placeholder="Escreva sua avaliação..."
                     className="w-full h-40 bg-gray-400 text-black placeholder-gray-600 px-4 py-2 rounded-lg"
                   />
                   <ErrorMessage
