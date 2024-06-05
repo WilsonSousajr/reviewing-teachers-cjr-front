@@ -95,8 +95,8 @@ export default RegisterForm;
             <div id="user-info" className="">
                 <form className="flex flex-col">
                     <input className="my-2 py-5 pr-96 rounded-xl text-black text-xl pl-4" placeholder="Nome"></input>
-                    <input className="my-2 py-5 pr-96 rounded-xl text-black text-xl pl-4" placeholder="Senha"></input>
                     <input className="my-2 py-5 pr-96 rounded-xl text-black text-xl pl-4" placeholder="Email"></input>
+                    <input className="my-2 py-5 pr-96 rounded-xl text-black text-xl pl-4" placeholder="Senha"></input>
                     <input className="my-2 py-5 pr-96 rounded-xl text-black text-xl pl-4" placeholder="Curso"></input>
                     <input className="my-2 py-5 pr-96 rounded-xl text-black text-xl pl-4" placeholder="Departamento"></input>
                 </form>
@@ -110,3 +110,4 @@ export default RegisterForm;
         </main>
     );
 };
+*/
