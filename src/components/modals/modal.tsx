@@ -37,18 +37,14 @@ const AvaliacaoModal: React.FC<AvaliacaoModalProps> = ({ isOpen, onClose }) => {
     ),
   });
 
-
   return (
     <>
       {isOpen && (
         <div
           id="popup"
-          
           className="fixed z-50 top-0 left-0 w-full h-full bg-darkblue bg-opacity-50 flex justify-center items-center"
         >
-          <div 
-          
-          className="bg-darkblue w-3/5 h-3/5 p-8 rounded-xl" >
+          <div className="bg-darkblue w-3/6 h-3/5 p-8 rounded-xl">
             <Formik
               initialValues={initialValues}
               validationSchema={validationSchema}
@@ -113,7 +109,7 @@ const AvaliacaoModal: React.FC<AvaliacaoModalProps> = ({ isOpen, onClose }) => {
               </Form>
             </Formik>
           </div>
-          </div>
+        </div>
       )}
     </>
   );

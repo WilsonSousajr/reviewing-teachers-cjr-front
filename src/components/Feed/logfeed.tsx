@@ -2,19 +2,17 @@ import React, { FormEvent, useState } from "react";
 import TeacherBox from "./Teacher-box/TeacherBox";
 import AvaliacaoModalProps from "../modals/modal";
 
-
 function LogFeed() {
   const [dropdownAberto, setDropdownAberto] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  function handleOpenModal(){
+  function handleOpenModal() {
     setModalIsOpen(!modalIsOpen);
   }
 
   const toggleDropdown = () => {
     setDropdownAberto(!dropdownAberto);
   };
-
 
   return (
     <>
@@ -74,8 +72,13 @@ function LogFeed() {
           >
             {" "}
             Nova Publicação
-          </button> {<AvaliacaoModalProps isOpen={modalIsOpen} onClose={handleOpenModal}/>}
-
+          </button>{" "}
+          {
+            <AvaliacaoModalProps
+              isOpen={modalIsOpen}
+              onClose={handleOpenModal}
+            />
+          }
           <div className="block">
             <button
               onClick={toggleDropdown}

@@ -51,53 +51,54 @@ const CreateProfModal: React.FC<CreateProfModalProps> = ({
             >
               <Form>
                 <div className="flex flex-col justify-center gap-5">
-                 <input type="file" className="bg-lightblue text-white text-xl py-1 px-8 rounded-xl outline outline-white outline-2 shadow-black shadow-md"/>
-                  
-                    <div className="mb-4">
-                      <Field
-                        type="text"
-                        name="nomeProf"
-                        placeholder="Nome do Professor"
-                        className="w-full h-10 bg-white text-gray-600 px-4 rounded-full"
-                      />
-                      <ErrorMessage
-                        name="nomeProf"
-                        component="div"
-                        className="text-red-500 text-sm mt-1"
-                      />
-                    </div>
-                    </div>
-                    <div className="mb-4">
-                      <Field
-                        type="text"
-                        name="nomeDisciplina"
-                        placeholder="Nome da Disciplina"
-                        className="w-full h-10 bg-white text-gray-600 px-4 rounded-full"
-                      />
-                      <ErrorMessage
-                        name="nomeDisciplina"
-                        component="div"
-                        className="text-red-500 text-sm mt-1"
-                      />
-                    </div>
-                    <div className="flex gap-5 justify-end">
-                      <button
-                        id="cancel"
-                        onClick={onClose}
-                        type="button"
-                        className="bg-darkblue text-white text-xl py-1 px-8 rounded-xl outline outline-white outline-2 shadow-black shadow-md"
-                      >
-                        Cancelar
-                      </button>
-                      <button
-                        type="submit"
-                        className="bg-lightblue text-white text-xl py-1 px-8 rounded-xl outline outline-white outline-2 shadow-black shadow-md"
-                      >
-                        Criar
-                      </button>
-                    </div>
-                 
-               
+                  <input
+                    type="file"
+                    className="bg-lightblue text-white text-xl py-1 px-8 rounded-xl outline outline-white outline-2 shadow-black shadow-md"
+                  />
+
+                  <div className="mb-4">
+                    <Field
+                      type="text"
+                      name="nomeProf"
+                      placeholder="Nome do Professor"
+                      className="w-full h-10 bg-white text-gray-600 px-4 rounded-full"
+                    />
+                    <ErrorMessage
+                      name="nomeProf"
+                      component="div"
+                      className="text-red-500 text-sm mt-1"
+                    />
+                  </div>
+                </div>
+                <div className="mb-4">
+                  <Field
+                    type="text"
+                    name="nomeDisciplina"
+                    placeholder="Nome da Disciplina"
+                    className="w-full h-10 bg-white text-gray-600 px-4 rounded-full"
+                  />
+                  <ErrorMessage
+                    name="nomeDisciplina"
+                    component="div"
+                    className="text-red-500 text-sm mt-1"
+                  />
+                </div>
+                <div className="flex gap-5 justify-end">
+                  <button
+                    id="cancel"
+                    onClick={onClose}
+                    type="button"
+                    className="bg-darkblue text-white text-xl py-1 px-8 rounded-xl outline outline-white outline-2 shadow-black shadow-md"
+                  >
+                    Cancelar
+                  </button>
+                  <button
+                    type="submit"
+                    className="bg-lightblue text-white text-xl py-1 px-8 rounded-xl outline outline-white outline-2 shadow-black shadow-md"
+                  >
+                    Criar
+                  </button>
+                </div>
               </Form>
             </Formik>
           </div>

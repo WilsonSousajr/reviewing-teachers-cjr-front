@@ -44,39 +44,38 @@ const UserModal: React.FC<UserModalProps> = ({ isOpen, onClose }) => {
           id="edituser"
           className="fixed z-50 top-0 left-0 w-full h-full bg-darkblue bg-opacity-50 flex justify-center items-center"
         >
-          <div className=" bg-darkblue  w-1/3 h-8/9 p-8 rounded-xl">
+          <div className=" bg-darkblue  w-1/3 h-7/9 p-8 rounded-xl">
             <Formik
               initialValues={initialValues}
               validationSchema={validationSchema}
               onSubmit={handleSubmit}
             >
               <Form>
-                <div className="felx felx-col gap-5">
-                <div className="flex justify-end">
-                  <button
-                    id="cancel"
-                    onClick={onClose}
-                    type="button"
-                    className=" bg-darkblue text-white rounded-full w-10 h-10 outline outline-white outline-2 shadow-black shadow-md"
-                  >
-                    X
-                  </button>
-                </div>
-              
-                <div className="mb-4">
-                  <Field
-                    type="text"
-                    name="nome"
-                    placeholder="Nome"
-                    className="w-full h-10 bg-white text-gray-600 px-4 rounded-full"
-                  />
-                  <ErrorMessage
-                    name="nome"
-                    component="div"
-                    className="text-red-500 text-sm mt-1"
-                  />
-                </div>
-                
+                <div className="flex flex-col justify-center gap-5">
+                  <div className="flex justify-end">
+                    <button
+                      id="cancel"
+                      onClick={onClose}
+                      type="button"
+                      className=" bg-darkblue text-white rounded-full w-10 h-10 outline outline-white outline-2 shadow-black shadow-md"
+                    >
+                      X
+                    </button>
+                  </div>
+
+                  <div className="mb-4">
+                    <Field
+                      type="text"
+                      name="nome"
+                      placeholder="Nome"
+                      className="w-full h-10 bg-white text-gray-600 px-4 rounded-full"
+                    />
+                    <ErrorMessage
+                      name="nome"
+                      component="div"
+                      className="text-red-500 text-sm mt-1"
+                    />
+                  </div>
                 </div>
                 <div className="mb-4">
                   <Field
