@@ -4,6 +4,8 @@ import TeacherProfileHeader from "@/components/Teacher/TeacherProfileHeader"
 import Review from "@/components/Teacher/Reviews"
 import axios from 'axios';
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { ParsedUrlQuery } from "querystring";
 
 interface Review {
     id: number;
@@ -17,13 +19,19 @@ interface Review {
 }
 
 export default function TeacherPage() {
+    const router = useRouter();
+    const {id} = router.query;
+
     const [reviews, setReviews] = useState([]);
     const [loading, setLoading] = useState(true);
+
+    const route: string = "http://localhost:3333/reviews/teacher/"+id!;
+    console.log(route)
 
     useEffect(() => {
         async function getReviews() {
             try {
-                const response = await axios.get("http://localhost:3333/reviews");
+                const response = await axios.get(route);
                 setReviews(response.data);
                 console.log("Fetched reviews: ", response.data);
             } catch (error) {
