@@ -4,8 +4,85 @@ import Button from '@/components/Button';
 import Foca from '@/images/foca.jpg.jpg';
 import Image from 'next/image';
 import Link from 'next/link';
+import React from 'react';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-export default function Register () { 
+const validationSchema = Yup.object().shape({
+    name: Yup.string().required('Name is required'),
+    email: Yup.string().email('Invalid email').required('Email is required'),
+    password: Yup.string().required('No password provided.').min(8, 'Password is too short - should be 8 chars minimum.'),
+    course: Yup.string().required('No course provided'),
+    department: Yup.string().required('No department provided'),
+})
+
+const initialValues = {
+    name: '',
+    email: '',
+    password: '',
+    course: '',
+    department: '',
+}
+
+const onSubmit = (values, { setSubmitting, resetForm }) => {
+    setTimeout(() => {
+        toast.success(JSON.stringify(values), {
+            position: toast.POSITION.TOP_RIGHT
+        });
+        setSubmitting(false);
+        resetForm();
+    }, 1000);
+}
+
+const RegisterForm = () => (
+    <div>
+        <h1>Cadastro</h1>
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={onSubmit}  
+        >
+            {({ isSubmitting }) => (
+                <Form>
+                    <div>
+                        <label>Nome</label>
+                        <Field type="text" name="name" />
+                        <ErrorMessage name="name" component="div" />
+                    </div>
+                    <div>
+                        <label>Email</label>
+                        <Field type="email" name="email" />
+                        <ErrorMessage name="email" component="div" />
+                    </div>
+                    <div>
+                        <label>Senha</label>
+                        <Field type="password" name="password" />
+                        <ErrorMessage name="password" component="div" />
+                    </div>
+                    <div>
+                        <label>Curso</label>
+                        <Field type="text" name="course" />
+                        <ErrorMessage name="course" component="div" />
+                    </div>
+                    <div>
+                        <label>Departamento</label>
+                        <Field type="text" name="department" />
+                        <ErrorMessage name="department" component="div" />
+                    </div>
+                    <button type="submit" disabled={isSubmitting}>
+                        Submit
+                    </button>
+                </Form>
+            )}
+        </Formik>
+    </div>
+);
+
+export default RegisterForm;
+
+/*export default function Register () { 
     return(
         <main className="flex">
          <div id="blank" className="w-1/2 h-screen">
