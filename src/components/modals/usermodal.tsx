@@ -2,8 +2,6 @@ import React from "react";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
-import Icon from "../Icon/Icon";
-
 interface UserModalProps {
   isOpen: boolean;
   onClose?: () => void;
@@ -53,6 +51,7 @@ const UserModal: React.FC<UserModalProps> = ({ isOpen, onClose }) => {
               onSubmit={handleSubmit}
             >
               <Form>
+                <div className="felx felx-col gap-5">
                 <div className="flex justify-end">
                   <button
                     id="cancel"
@@ -63,11 +62,7 @@ const UserModal: React.FC<UserModalProps> = ({ isOpen, onClose }) => {
                     X
                   </button>
                 </div>
-               <div className="flex flex-col gap-5">
-                <div className="flex justify-items-center justify-center">
-                  <Icon picture="https://s3-alpha-sig.figma.com/img/e698/2e6c/845dc909c50d919bd3b40deeb417a8bb?Expires=1716768000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=FZiqoDb4kpkf8y1Rb0h1gSXcj~3tuSrBKatmqFBB~rM5qtetn6EzBst4kViv6~3B7Cobb9vkzQlQ0hqub1U-aREGatSK9wNxj3SuB20fHnwpAtzoo9cY8v60JfJSUHlnrPnJx3I5smNSa-ZSpkT~c~n7vB60EFPDZ2ECkDAxzVsIGEhxF67vSwmvPjw8htnS83MxzoMqY4nniUng8PkHwncTIgwU2hZx7lDiNMjl6pLDPMTQ3D-0eFZ-b9OKFI-nFgPvDx0KusBaq9s0F~g4JyQIlETI-ogtyBL1GJ-LobiSSDvXcM8Qea7m0P79KGjyo7ueVqHRKZk9MBx0Ouy2yw__" />
-
-                </div>
+              
                 <div className="mb-4">
                   <Field
                     type="text"
@@ -81,6 +76,7 @@ const UserModal: React.FC<UserModalProps> = ({ isOpen, onClose }) => {
                     className="text-red-500 text-sm mt-1"
                   />
                 </div>
+                
                 </div>
                 <div className="mb-4">
                   <Field
