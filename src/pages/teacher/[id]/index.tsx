@@ -17,12 +17,24 @@ interface Review {
     createdAt: string;
     updatedAt: string;
 }
+interface Teacher {
+    id: number;
+	name: string;
+	departament: string;
+	createdAt: string;
+	updatedAt: string;
+}
+
 
 export default function TeacherPage() {
     const router = useRouter();
 
     const [reviews, setReviews] = useState([]);
+    const [teacher, setTeacher] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [loadingTeacher, setLoadingTeacher] = useState(true);
+    let reviewRoute: string= "";
+    let teacherRoute: string= "";
 
 
     useEffect(() => {
@@ -42,24 +54,38 @@ export default function TeacherPage() {
             }
         }
 
+        async function getTeacher() {
+            try {
+                const response = await axios.get(teacherRoute)
+                setTeacher(response.data)
+            }catch (error){
+                console.error("Error fetching teacher: ", error)
+            }finally {
+                setLoadingTeacher(false);
+            }
+        }
+        
         getReviews();
-    }, []);
+        getTeacher();
+    }, [router.isReady]);
+    
 
-    const teacher = {
-        name: "Rick Sanches",
-        departament: "Ciencias da Computacao",
-        disciplines: "Teste I, Teste II, Introdução a Testes"
-    };
 
     return (
         <>
             <UnloggedHeader />
             <div className="max-w-4xl mx-auto mt-8 p-4">
+                {!loadingTeacher? (
+                    teacher.map((professor: Teacher, index) =>(
                 <TeacherProfileHeader
-                    name={teacher.name}
-                    department={teacher.departament}
+                            key={index}
+                            name={professor.name}
+                            department={professor.departament}
                     disciplines={["Teste I", "Teste IV"]}
                 />
+                    ))
+                ) : 
+                (<></>)}
                 <div className="mt-8">
                     <h2 className="text-xl font-bold mb-4">Publicações</h2>
                     {loading ? (
