@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import logo from "/public/logo.png";
 import FaComment from "../../images/FaComment.png";
+import axios from "axios";
 
 interface Props {
     //review
@@ -9,8 +10,18 @@ interface Props {
     "date": string,
     //user
     "avatarUrl": string,
-    "userName": string,
-
+    "userId": number,
+}
+interface User{
+    id: number;
+    email: string;
+    password: string;
+    name: string;
+    picture: string;
+    departament: string;
+    course: string;
+    createdAt: string;
+    updatedAt: string;
 }
 
 const Review: React.FC<Props> = ({ avatarUrl, userName, date, title, content }) => {
