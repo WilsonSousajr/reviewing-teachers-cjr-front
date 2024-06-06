@@ -28,15 +28,15 @@ interface Teacher {
 
 export default function TeacherPage() {
     const router = useRouter();
-
+    
     const [reviews, setReviews] = useState([]);
     const [teacher, setTeacher] = useState([]);
     const [loading, setLoading] = useState(true);
     const [loadingTeacher, setLoadingTeacher] = useState(true);
     let reviewRoute: string= "";
     let teacherRoute: string= "";
-
-
+    
+    
     useEffect(() => {
         if(!router.isReady) return
         const id = router.query;
@@ -77,12 +77,12 @@ export default function TeacherPage() {
             <div className="max-w-4xl mx-auto mt-8 p-4">
                 {!loadingTeacher? (
                     teacher.map((professor: Teacher, index) =>(
-                <TeacherProfileHeader
+                        <TeacherProfileHeader
                             key={index}
                             name={professor.name}
                             department={professor.departament}
-                    disciplines={["Teste I", "Teste IV"]}
-                />
+                            disciplines={["Teste I", "Teste IV"]}
+                        />
                     ))
                 ) : 
                 (<></>)}
