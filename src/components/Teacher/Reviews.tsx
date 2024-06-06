@@ -24,7 +24,24 @@ interface User{
     updatedAt: string;
 }
 
-const Review: React.FC<Props> = ({ avatarUrl, userName, date, title, content }) => {
+const Review: React.FC<Props> = ({ avatarUrl, userId, date, title, content }) => {
+    const[user, setUser] = useState([]);
+    const[foundUser, setFoundUser] = useState(false);
+
+    useEffect(() => {
+        async function getUserInfo() {
+            try{
+                const response = await axios.get('http://localhost:3333/users/'+userId);
+                setUser(response.data) 
+            }catch(error){
+                console.error("Error fetching user: ", error);
+            }finally{
+                setFoundUser(true);
+            }
+        }
+        getUserInfo();
+    },[])
+
 return(
     <>
         <div className="bg-white rounded-lg shadow-md p-6 mb-4">
