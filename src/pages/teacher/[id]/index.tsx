@@ -96,7 +96,7 @@ export default function TeacherPage() {
                                 <Review 
                                     key={index}
                                     avatarUrl="teste.png"
-                                    userName={`User ${post.userId}`} // Pode adaptar conforme necessário
+                                    userId={post.userId} // Pode adaptar conforme necessário
                                     date={post.createdAt}
                                     title={post.title}
                                     content={post.content}
