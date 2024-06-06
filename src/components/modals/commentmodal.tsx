@@ -36,7 +36,7 @@ const CommentModal: React.FC<CommentModalProps> = ({ isOpen, onClose }) => {
       {isOpen && (
         <div
           id="comentario"
-          className="fixed z-50 top-0 left-0 w-full h-full bg-darkblue bg-opacity-50 flex justify-center items-center"
+          className="fixed z-50 top-0 left-0 w-full h-full bg-white bg-opacity-50 flex justify-center items-center"
           onClick={(e) => {
             if (e.target.id === "comentario") {
               onClose();
