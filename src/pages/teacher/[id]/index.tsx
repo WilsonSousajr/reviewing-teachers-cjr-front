@@ -20,18 +20,19 @@ interface Review {
 
 export default function TeacherPage() {
     const router = useRouter();
-    const {id} = router.query;
 
     const [reviews, setReviews] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    const route: string = "http://localhost:3333/reviews/teacher/"+id!;
-    console.log(route)
 
     useEffect(() => {
+        if(!router.isReady) return
+        const id = router.query;
+        reviewRoute = 'http://localhost:3333/reviews/teacher/'+id?.id
+        teacherRoute = 'http://localhost:3333/teachers/'+id?.id
         async function getReviews() {
             try {
-                const response = await axios.get(route);
+                const response = await axios.get(reviewRoute);
                 setReviews(response.data);
                 console.log("Fetched reviews: ", response.data);
             } catch (error) {
@@ -65,7 +66,7 @@ export default function TeacherPage() {
                         <p>Carregando reviews...</p>
                     ) : (
                         reviews.length > 0 ? (
-                            reviews.map((post, index) => (
+                            reviews.map((post: Review, index) => (
                                 <Review 
                                     key={index}
                                     avatarUrl="teste.png"
