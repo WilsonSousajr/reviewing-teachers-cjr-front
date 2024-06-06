@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 
 interface CommentModalProps {
   isOpen: boolean;
-  onClose?: () => void;
+  onClose: () => void;
 }
 
 const CommentModal: React.FC<CommentModalProps> = ({ isOpen, onClose }) => {
@@ -37,6 +37,11 @@ const CommentModal: React.FC<CommentModalProps> = ({ isOpen, onClose }) => {
         <div
           id="comentario"
           className="fixed z-50 top-0 left-0 w-full h-full bg-darkblue bg-opacity-50 flex justify-center items-center"
+          onClick={(e) => {
+            if (e.target.id === "comentario") {
+              onClose();
+            }
+          }}
         >
           <div className="bg-darkblue w-3/5 h-3/5 p-8 rounded-xl">
             <Formik
@@ -58,23 +63,23 @@ const CommentModal: React.FC<CommentModalProps> = ({ isOpen, onClose }) => {
                     className="text-red-500 text-sm mt-1"
                   />
                 </div>
-               
-                  <div className="flex gap-5 justify-end">
-                    <button
-                      id="cancel"
-                      onClick={onClose}
-                      type="button"
-                      className="bg-darkblue text-white text-xl py-1 px-8 rounded-xl outline outline-white outline-2 shadow-black shadow-md"
-                    >
-                      Cancelar
-                    </button>
-                    <button
-                      type="submit"
-                      className="bg-lightblue text-white text-xl py-1 px-8 rounded-xl outline outline-white outline-2 shadow-black shadow-md"
-                    >
-                      Comentar
-                    </button>
-                  </div>
+
+                <div className="flex gap-5 justify-end">
+                  <button
+                    id="cancel"
+                    onClick={onClose}
+                    type="button"
+                    className="bg-darkblue text-white text-xl py-1 px-8 rounded-xl outline outline-white outline-2 shadow-black shadow-md"
+                  >
+                    Cancelar
+                  </button>
+                  <button
+                    type="submit"
+                    className="bg-lightblue text-white text-xl py-1 px-8 rounded-xl outline outline-white outline-2 shadow-black shadow-md"
+                  >
+                    Comentar
+                  </button>
+                </div>
               </Form>
             </Formik>
           </div>

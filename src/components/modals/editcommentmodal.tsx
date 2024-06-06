@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 
 interface EditModalProps {
   isOpen: boolean;
-  onClose?: () => void;
+  onClose: () => void;
 }
 
 const EditModal: React.FC<EditModalProps> = ({ isOpen, onClose }) => {
@@ -37,6 +37,11 @@ const EditModal: React.FC<EditModalProps> = ({ isOpen, onClose }) => {
         <div
           id="comentario"
           className="fixed z-50 top-0 left-0 w-full h-full bg-darkblue bg-opacity-50 flex justify-center items-center"
+          onClick={(e) => {
+            if (e.target.id === "comentario") {
+              onClose();
+            }
+          }}
         >
           <div className="bg-darkblue w-3/5 h-3/5 p-8 rounded-xl">
             <Formik

@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import { toast } from "react-toastify";
 interface UserModalProps {
   isOpen: boolean;
-  onClose?: () => void;
+  onClose: () => void;
 }
 
 const UserModal: React.FC<UserModalProps> = ({ isOpen, onClose }) => {
@@ -43,6 +43,11 @@ const UserModal: React.FC<UserModalProps> = ({ isOpen, onClose }) => {
         <div
           id="edituser"
           className="fixed z-50 top-0 left-0 w-full h-full bg-darkblue bg-opacity-50 flex justify-center items-center"
+          onClick={(e) => {
+            if (e.target.id === "edituser") {
+              onClose();
+            }
+          }}
         >
           <div className=" bg-darkblue  w-1/3 h-7/9 p-8 rounded-xl">
             <Formik

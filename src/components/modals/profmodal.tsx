@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 
 interface CreateProfModalProps {
   isOpen: boolean;
-  onClose?: () => void;
+  onClose: () => void;
 }
 
 const CreateProfModal: React.FC<CreateProfModalProps> = ({
@@ -42,6 +42,11 @@ const CreateProfModal: React.FC<CreateProfModalProps> = ({
         <div
           id="modalprof"
           className="fixed z-50 top-0 left-0 w-full h-full bg-darkblue bg-opacity-50 flex justify-center items-center"
+          onClick={(e) => {
+            if (e.target.id === "modalprof") {
+              onClose();
+            }
+          }}
         >
           <div className="bg-darkblue w-2/5 h-4/7 p-8 rounded-xl">
             <Formik
