@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { FaComment, FaShareSquare, FaRegEdit, FaTrash } from "react-icons/fa";
 import CommentModalProps from "../modals/commentmodal";
-import EditModalProps from "../modals/editcommentmodal";
+import EditAvaliationModalProps from "../modals/editavaliation";
 
 interface UserPostProps {
   avatarUrl: string;
@@ -71,7 +71,7 @@ const UserPost: React.FC<UserPostProps> = ({
           >
             <FaRegEdit className="mr-2" />
           </button>{" "}
-          {<EditModalProps isOpen={modalEditIsOpen} onClose={handleOpenEditModal} />}
+          {<EditAvaliationModalProps isOpen={modalEditIsOpen} onClose={handleOpenEditModal} />}
           <button className="flex items-center text-gray-600 hover:text-gray-800">
             <FaTrash className="mr-2" />
           </button>
