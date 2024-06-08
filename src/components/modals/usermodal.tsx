@@ -33,7 +33,7 @@ const UserModal: React.FC<UserModalProps> = ({ isOpen, onClose }) => {
   const validationSchema = Yup.object({
     nome: Yup.string().required("O nome é obrigatório."),
     email: Yup.string().required("O email é obrigatório."),
-    curso: Yup.string().required("O cursp é obrigatório."),
+    curso: Yup.string().required("O curso é obrigatório."),
     departamento: Yup.string().required("O departamento é obrigatório."),
   });
 
