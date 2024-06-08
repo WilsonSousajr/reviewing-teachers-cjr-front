@@ -1,5 +1,5 @@
 import React from 'react';
-import UserProfileHeader from './UserHeader';
+import UserHeader from './UserHeader';
 import UserPost from './UserPost';
 import { userAgent } from 'next/server';
 
@@ -34,7 +34,7 @@ const UserPage: React.FC = () => {
 
     return (
         <div className="max-w-4xl mx-auto mt-8 p-4">
-            <UserProfileHeader 
+            <UserHeader 
                 name={user.name}
                 department= {user.department}
                 email={user.email}

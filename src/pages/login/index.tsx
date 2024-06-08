@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 
 export default function Register(){
   return(
@@ -16,8 +18,12 @@ export default function Register(){
                 </form>
             </div>
             <div className="flex justify-center gap-10">
+              <Link href="/" passHref>
                 <button className="bg-lightblue text-2xl py-4 px-20 rounded-lg outline">Entrar</button>
+              </Link>
+              <Link href="/register" passHref>
                 <button className="bg-lightblue text-2xl py-4 px-12 rounded-lg outline">Criar Conta</button>
+              </Link>
             </div>
           </div>
       </main>
