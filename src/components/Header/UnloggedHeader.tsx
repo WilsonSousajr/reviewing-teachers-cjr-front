@@ -4,6 +4,28 @@ import logo from "/public/logo.png"
 import React from 'react'
 import Link from "next/link";
 
+interface Review {
+  id: number;
+  userId: number;
+  teacherId: number;
+  disciplineId: number;
+  title: string;
+  content: string;
+  createdAt: string;
+  updatedAt: string;
+}
+interface User{
+  id: number;
+  email: string;
+  password: string;
+  name: string;
+  picture: string;
+  departament: string;
+  course: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
 const UnloggedHeader = () => {
   return (
     <>
