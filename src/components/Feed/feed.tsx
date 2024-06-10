@@ -14,6 +14,29 @@ interface Teacher {
 }
 
 function Feed() {
+    const [teachers, setTeachers] = useState([]);
+    const [foundTeachers, setFoundTeachers] = useState(false);
+    const teachersRoute = 'http://localhost:3333/teachers/';
+
+    useEffect(() => {
+        async function getTeachers(){
+            try{
+                const response = await axios.get(teachersRoute);
+                setTeachers(response.data);
+                console.log("Teachers fetched: ", response.data);
+            }
+            catch(error){
+                console.error("Error fetching teachers: ", error);
+            }
+            finally{
+                setFoundTeachers(true);
+            }
+            
+        }
+        getTeachers();
+    })
+
+
     const [dropdownAberto, setDropdownAberto] = useState(false);
 
     const toggleDropdown = () => {
