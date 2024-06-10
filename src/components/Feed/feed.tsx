@@ -63,7 +63,7 @@ function Feed() {
                             </Link>
                             ))
                         ) : 
-                        (<></>)}
+                        (<span>Carregando professores ...</span>)}
                         </div>
                         <hr className='border-black leading-3 w-[90%] mb-8' />
                     </div>   
@@ -93,7 +93,7 @@ function Feed() {
                             </Link>
                             ))
                         ) : 
-                        (<></>)}
+                        (<span>Carregando professores ...</span>)}
                         </div>
                     </div>
                 </div>
