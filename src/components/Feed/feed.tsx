@@ -2,6 +2,16 @@ import React, { useState} from 'react'
 import TeacherBox from './Teacher-box/TeacherBox'
 import MyButton from '../Button/MyButton'
 import Link from 'next/link'
+import axios from 'axios';
+import { get } from 'http';
+
+interface Teacher {
+    id: number;
+    name: string;
+    departament: string;
+    createdAt: string;
+    updatedAt: string;
+}
 
 function Feed() {
     const [dropdownAberto, setDropdownAberto] = useState(false);
