@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { FaEnvelope, FaUserEdit, FaTrash } from 'react-icons/fa';
 import UserModalProps from "../modals/usermodal"
+import DeleteModalProps from "../modals/deleteusermodal"
 
 interface UserProfileHeaderProps {
     name: string;
@@ -13,10 +14,14 @@ interface UserProfileHeaderProps {
 
 const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({ name, department, email, avatarUrl, bannerUrl }) => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [modalDeleteIsOpen, setModalDeleteIsOpen] = useState(false);
 
     function handleOpenModal() {
       setModalIsOpen(!modalIsOpen);
     }
+    function handleOpenDeleteModal() {
+        setModalDeleteIsOpen(!modalDeleteIsOpen);
+      }
     return (
         <div className='bg-gray-100 rounded-lg shadow-md'>
             <div className='flex'>
@@ -48,9 +53,14 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({ name, department,
             />
           }
            
-                                <button className="w-36 h-12 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700 flex items-center">
+                                <button className="w-36 h-12 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700 flex items-center" onClick={handleOpenDeleteModal}>
                                     <FaTrash className="mr-2" /> Excluir Perfil
-                                </button>
+                                </button> {
+            <DeleteModalProps
+              isOpen={modalDeleteIsOpen}
+              onClose={handleOpenDeleteModal}
+            />
+          }
                             </div>
                         </div>    
                     </div>
