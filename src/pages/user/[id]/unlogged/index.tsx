@@ -77,7 +77,7 @@ const Perfil_Deslogado: NextPage = () => {
           users.map((user: User, index) => (
             <div key={index}>
               <UserPage userDepartament={user.departament} userEmail={user.email} userName={user.name} userPicture={user.picture} reviews={reviews} />
-      </div>
+            </div>
           ))
         ) : (<p className="flex justify-items-center">Usuario nao encontrado!</p>)
       ) : (

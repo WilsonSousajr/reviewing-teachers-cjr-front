@@ -1,6 +1,3 @@
-import MyButton from "../Button/MyButton"
-import logo from "/public/logo.png"
-
 import React from 'react'
 import Link from "next/link";
 

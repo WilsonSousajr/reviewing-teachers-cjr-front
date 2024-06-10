@@ -35,7 +35,7 @@ const UserPage: React.FC<Props> = ({userDepartament, userEmail, userName, userPi
                 <h2 className="text-xl font-bold mb-4">Publicações</h2>
                 {reviews.length > 0 ? (
                     reviews.map((post: Review, index) => (
-                    <UserPost 
+                        <UserPost 
                         key={index}
                         avatarUrl={userPicture}
                         userName={userName}
@@ -47,8 +47,8 @@ const UserPage: React.FC<Props> = ({userDepartament, userEmail, userName, userPi
                     ))
                 ) : (
                     <p>Não há postagens ainda!</p>
-              )
-            }
+                )
+                }
                 
             </div>
         </div>
