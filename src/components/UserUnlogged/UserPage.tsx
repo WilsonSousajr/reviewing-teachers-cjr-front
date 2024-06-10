@@ -24,28 +24,32 @@ const UserPage: React.FC<Props> = ({userDepartament, userEmail, userName, userPi
     return (
         <div className="max-w-4xl mx-auto mt-8 p-4">
             <UserHeader 
-                name={user.name}
-                department= {user.department}
-                email={user.email}
-                avatarUrl={user.avatarUrl}	
-                bannerUrl={user.bannerUrl}
+                name={userName}
+                department= {userDepartament}
+                email={userEmail}
+                avatarUrl={userPicture}	
+                bannerUrl="http://localhost:3000/images/banner.png"
             />
 
             <div className="mt-8">
                 <h2 className="text-xl font-bold mb-4">Publicações</h2>
-                {posts.map((post, index) => (
+                {reviews.length > 0 ? (
+                    reviews.map((post: Review, index) => (
                     <UserPost 
                         key={index}
-                        avatarUrl={post.avatarUrl}
-                        userName={post.userName}
-                        date={post.date}
+                        avatarUrl={userPicture}
+                        userName={userName}
+                        date={post.createdAt}
                         title={post.title}
                         content={post.content}
-                        commentsCount={post.commentsCount}
+                        commentsCount={0}
                     />
-                )
+                    ))
+                ) : (
+                    <p>Não há postagens ainda!</p>
               )
             }
+                
             </div>
         </div>
     )
