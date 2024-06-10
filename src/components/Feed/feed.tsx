@@ -1,4 +1,4 @@
-import React, { useState} from 'react'
+import React, { useEffect, useState} from 'react'
 import TeacherBox from './Teacher-box/TeacherBox'
 import MyButton from '../Button/MyButton'
 import Link from 'next/link'
