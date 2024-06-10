@@ -1,13 +1,20 @@
 import React, { FormEvent, useState } from "react";
 import TeacherBox from "./Teacher-box/TeacherBox";
 import AvaliacaoModalProps from "../modals/modal";
+import ProfModalProps from "../modals/profmodal";
+import { FaPlus } from 'react-icons/fa';
 
 function LogFeed() {
   const [dropdownAberto, setDropdownAberto] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalProfIsOpen, setModalProfIsOpen] = useState(false);
 
   function handleOpenModal() {
     setModalIsOpen(!modalIsOpen);
+  }
+
+  function handleOpenProfModal() {
+    setModalProfIsOpen(!modalProfIsOpen);
   }
 
   const toggleDropdown = () => {
@@ -28,11 +35,16 @@ function LogFeed() {
           <div className="flex flex-col items-center">
             <div className="justify-start grid grid-cols-6 gap-y-6 overflow-hidden mb-8">
               {/* Usage: <TeacherBox name='-name-' ocuppation='-ocuppation-' picture='-url-'/> */}
-              <TeacherBox
-                name="Nome"
-                ocuppation="Disciplina"
-                picture="https://s3-alpha-sig.figma.com/img/e698/2e6c/845dc909c50d919bd3b40deeb417a8bb?Expires=1716768000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=FZiqoDb4kpkf8y1Rb0h1gSXcj~3tuSrBKatmqFBB~rM5qtetn6EzBst4kViv6~3B7Cobb9vkzQlQ0hqub1U-aREGatSK9wNxj3SuB20fHnwpAtzoo9cY8v60JfJSUHlnrPnJx3I5smNSa-ZSpkT~c~n7vB60EFPDZ2ECkDAxzVsIGEhxF67vSwmvPjw8htnS83MxzoMqY4nniUng8PkHwncTIgwU2hZx7lDiNMjl6pLDPMTQ3D-0eFZ-b9OKFI-nFgPvDx0KusBaq9s0F~g4JyQIlETI-ogtyBL1GJ-LobiSSDvXcM8Qea7m0P79KGjyo7ueVqHRKZk9MBx0Ouy2yw__"
-              />
+              <button className='w-52 h-72 bg-lightblue p-6  flex flex-col items-center justify-center rounded-lg mx-6'
+              onClick={handleOpenProfModal}>
+<FaPlus className="h-24 w-24 inline text-white " />
+              </button>          
+               {
+            <ProfModalProps
+              isOpen={modalProfIsOpen}
+              onClose={handleOpenProfModal}
+            />
+          }
               <TeacherBox
                 name="Nome"
                 ocuppation="Disciplina"
