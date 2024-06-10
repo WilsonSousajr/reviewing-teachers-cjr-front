@@ -15,6 +15,7 @@ interface Teacher {
 
 function Feed() {
     const [teachers, setTeachers] = useState([]);
+    const [new_teachers, setNewTeachers] = useState([]);
     const [foundTeachers, setFoundTeachers] = useState(false);
     const teachersRoute = 'http://localhost:3333/teachers/';
 
@@ -23,6 +24,7 @@ function Feed() {
             try{
                 const response = await axios.get(teachersRoute);
                 setTeachers(response.data);
+                setNewTeachers(teachers.slice(0, 6))
                 console.log("Teachers fetched: ", response.data);
             }
             catch(error){
@@ -55,7 +57,7 @@ function Feed() {
                         <div className='justify-start grid grid-cols-6 gap-y-6 overflow-hidden mb-8'>
                             {/* Usage: <TeacherBox name='-name-' ocuppation='-ocuppation-' picture='-url-'/> */}
                             {foundTeachers? (
-                            teachers.map((teacher: Teacher, index) =>(
+                            new_teachers.map((teacher: Teacher, index) =>(
                             <Link href={"/teacher/"+teacher.id} key={index} passHref>
                                 <TeacherBox name={teacher.name} ocuppation={teacher.departament} picture='https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small_2x/default-avatar-profile-icon-of-social-media-user-vector.jpg'></TeacherBox>
                             </Link>
