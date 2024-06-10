@@ -72,9 +72,17 @@ const Perfil_Deslogado: NextPage = () => {
   return (
     <>
       <UnloggedHeader />
-      <div>
-        <UserPage />
+      {!loadingUser? (
+        users.length > 0 ? (
+          users.map((user: User, index) => (
+            <div key={index}>
+              <UserPage userDepartament={user.departament} userEmail={user.email} userName={user.name} userPicture={user.picture} reviews={reviews} />
       </div>
+          ))
+        ) : (<p className="flex justify-items-center">Usuario nao encontrado!</p>)
+      ) : (
+        <p>Carregando ...</p>
+      )}
     </>
     
   )
