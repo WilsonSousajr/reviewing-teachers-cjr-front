@@ -28,6 +28,47 @@ interface User{
 }
 
 const Perfil_Deslogado: NextPage = () => {
+  const router = useRouter();
+    
+  const [reviews, setReviews] = useState([]);
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [loadingUser, setLoadinguser] = useState(true);
+  let reviewRoute: string= "";
+  let userRoute: string= "";
+  
+  
+  useEffect(() => {
+      if(!router.isReady) return
+      const id = router.query;
+      reviewRoute = 'http://localhost:3333/reviews/user/'+id?.id
+      userRoute = 'http://localhost:3333/users/'+id?.id
+      async function getReviews() {
+          try {
+              const response = await axios.get(reviewRoute);
+              setReviews(response.data);
+              console.log("Fetched reviews: ", response.data);
+          } catch (error) {
+              console.error("Error fetching reviews:", error);
+          } finally {
+              setLoading(false);
+          }
+      }
+
+      async function getUser() {
+          try {
+              const response = await axios.get(userRoute)
+              setUsers(response.data)
+          }catch (error){
+              console.error("Error fetching teacher: ", error)
+          }finally {
+              setLoadinguser(false);
+          }
+      }
+      
+      getReviews();
+      getUser();
+  }, [router.isReady]);
   return (
     <>
       <UnloggedHeader />
