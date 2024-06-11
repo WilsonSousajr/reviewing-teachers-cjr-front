@@ -38,8 +38,6 @@ const UserModal: React.FC<UserModalProps> = ({ isOpen, onClose, updateRoute, nam
   ) => {
     //enviar os dados do formulário (autenticação)
     if(values.senhaNova){
-      console.log("Muda senha")
-      console.log(values.senhaNova)
       try{
         const response = await axios.patch(updateRoute, {
           "email": values.email,
@@ -53,7 +51,6 @@ const UserModal: React.FC<UserModalProps> = ({ isOpen, onClose, updateRoute, nam
         console.error("Erro ao editar o usuario: ", error)
       }
     }else{
-      console.log("Nao Muda senha")
       try{
         const response = await axios.patch(updateRoute, {
           "email": values.email,
