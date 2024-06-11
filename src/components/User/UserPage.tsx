@@ -14,6 +14,7 @@ interface Review {
     updatedAt: string;
   }
 interface Props{
+    deleteRoute: string
     userName: string;
     userDepartament: string;
     userEmail: string;
@@ -21,7 +22,7 @@ interface Props{
     reviews: Review[]
 }
 
-const UserPage: React.FC<Props> = ({userDepartament, userEmail, userName, userPicture, reviews}) => {
+const UserPage: React.FC<Props> = ({deleteRoute, userDepartament, userEmail, userName, userPicture, reviews}) => {
     return (
         <div className="max-w-4xl mx-auto mt-8 p-4">
             <UserProfileHeader 

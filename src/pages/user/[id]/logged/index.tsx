@@ -78,7 +78,7 @@ const User: NextPage = () => {
         users.length > 0 ? (
           users.map((user: User, index) => (
             <div key={index}>
-              <UserPage userDepartament={user.departament} userEmail={user.email} userName={user.name} userPicture={user.picture} reviews={reviews} />
+              <UserPage deleteRoute={deleteRoute} userDepartament={user.departament} userEmail={user.email} userName={user.name} userPicture={user.picture} reviews={reviews} />
             </div>
           ))
         ) : (<p className="flex justify-items-center">Usuario nao encontrado!</p>)
