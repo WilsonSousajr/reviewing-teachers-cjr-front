@@ -31,6 +31,7 @@ const UserModal: React.FC<UserModalProps> = ({ isOpen, onClose, updateRoute, nam
     return inputPassword === password;
   };
 
+  
   const handleSubmit = async(
     values: any,
     { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }
