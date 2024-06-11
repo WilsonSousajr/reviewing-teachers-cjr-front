@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { FaEnvelope, FaUserEdit, FaTrash } from 'react-icons/fa';
 import UserModalProps from "../modals/usermodal"
+import DeleteModal from '../modals/deleteusermodal';
 
 interface UserProfileHeaderProps {
     name: string;

@@ -1,11 +1,20 @@
-import React from "react";
+import axios from "axios";
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
 
 interface DeleteModalProps {
   isOpen: boolean;
   onClose: () => void;
+  deleteRoute: string
 }
 
-const DeleteModal: React.FC<DeleteModalProps> = ({ isOpen, onClose }) => {
+const DeleteModal: React.FC<DeleteModalProps> = ({deleteRoute, isOpen, onClose }) => {
+  function deleteUser(){
+    axios.delete(deleteRoute)
+    .then(response => {
+      console.log("User deleted :", response)
+    })
+  }
   return (
     <>
       {isOpen && (
@@ -39,6 +48,7 @@ const DeleteModal: React.FC<DeleteModalProps> = ({ isOpen, onClose }) => {
                   Voltar
                 </button>
                 <button
+                    onClick={deleteUser}
                   type="button"
                   className="bg-red-700 text-white text-xl py-1 px-8 rounded-xl outline outline-white outline-2 shadow-black shadow-md"
                 >
