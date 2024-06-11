@@ -48,13 +48,13 @@ const DeleteModal: React.FC<DeleteModalProps> = ({deleteRoute, isOpen, onClose }
                   Voltar
                 </button>
                 <Link href={"/feed/logged"} passHref>
-                <button
+                  <button
                     onClick={deleteUser}
-                  type="button"
-                  className="bg-red-700 text-white text-xl py-1 px-8 rounded-xl outline outline-white outline-2 shadow-black shadow-md"
-                >
-                  Excluir
-                </button>
+                    type="button"
+                    className="bg-red-700 text-white text-xl py-1 px-8 rounded-xl outline outline-white outline-2 shadow-black shadow-md"
+                    >
+                    Excluir
+                  </button>
                 </Link>
               </div>
             </div>
