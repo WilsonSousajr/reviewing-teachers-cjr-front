@@ -31,6 +31,7 @@ const UserPage: React.FC<Props> = ({deleteRoute, userDepartament, userEmail, use
                 email={userEmail}
                 avatarUrl={userPicture}	
                 bannerUrl="http://localhost:3000/images/banner.png"
+                deleteRoute={deleteRoute}
             />
 
             <div className="mt-8">

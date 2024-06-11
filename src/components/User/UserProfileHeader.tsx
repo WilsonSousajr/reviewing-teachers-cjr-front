@@ -9,9 +9,10 @@ interface UserProfileHeaderProps {
     email: string;
     avatarUrl: string;
     bannerUrl: string;
+    deleteRoute: string
 }
 
-const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({ name, department, email, avatarUrl, bannerUrl }) => {
+const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({ name, department, email, avatarUrl, bannerUrl, deleteRoute }) => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
     function handleOpenModal() {
