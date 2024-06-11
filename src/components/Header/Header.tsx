@@ -10,7 +10,7 @@ import React from 'react';
 const Header: React.FC = () => {
     return (
         <header className="bg-gray-800 text-white p-4 flex justify-between items-center">
-            <Link href="/feed/unlogged" passHref>
+            <Link href="/" passHref>
                 <div className="flex items-center">
                     <Image src={Logo} alt="Logo da Universidade de Brasília" width={50} height={50} />
                 </div>
