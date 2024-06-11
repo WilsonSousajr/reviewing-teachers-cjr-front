@@ -34,6 +34,7 @@ const User: NextPage = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [loadingUser, setLoadinguser] = useState(true);
+  const [deleteRoute, setDeleteRoute] = useState("")
   let reviewRoute: string= "";
   let userRoute: string= "";
   
@@ -43,6 +44,7 @@ const User: NextPage = () => {
       const id = router.query;
       reviewRoute = 'http://localhost:3333/reviews/user/'+id?.id
       userRoute = 'http://localhost:3333/users/'+id?.id
+      setDeleteRoute(('http://localhost:3333/users/'+id?.id))
       async function getReviews() {
           try {
               const response = await axios.get(reviewRoute);
