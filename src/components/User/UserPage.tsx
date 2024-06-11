@@ -16,23 +16,28 @@ interface Review {
 interface Props{
     userName: string;
     userDepartament: string;
+    userCourse: string
     userEmail: string;
+    userPassword: string;
     userPicture: string;
     reviews: Review[]
     deleteRoute: string
     updateRoute: string
 }
 
-const UserPage: React.FC<Props> = ({deleteRoute, userDepartament, userEmail, userName, userPicture, reviews}) => {
+const UserPage: React.FC<Props> = ({deleteRoute, updateRoute, userDepartament, userCourse, userEmail, userPassword, userName, userPicture, reviews}) => {
     return (
         <div className="max-w-4xl mx-auto mt-8 p-4">
             <UserProfileHeader 
                 name={userName}
                 department= {userDepartament}
+                course={userCourse}
                 email={userEmail}
+                password={userPassword}
                 avatarUrl={userPicture}	
                 bannerUrl="http://localhost:3000/images/banner.png"
                 deleteRoute={deleteRoute}
+                updateRoute={updateRoute}
             />
 
             <div className="mt-8">
