@@ -47,6 +47,7 @@ const DeleteModal: React.FC<DeleteModalProps> = ({deleteRoute, isOpen, onClose }
                 >
                   Voltar
                 </button>
+                <Link href={"/feed/logged"} passHref>
                 <button
                     onClick={deleteUser}
                   type="button"
@@ -54,6 +55,7 @@ const DeleteModal: React.FC<DeleteModalProps> = ({deleteRoute, isOpen, onClose }
                 >
                   Excluir
                 </button>
+                </Link>
               </div>
             </div>
           </div>
