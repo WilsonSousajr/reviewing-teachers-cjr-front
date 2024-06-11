@@ -28,6 +28,11 @@ const Review: React.FC<Props> = ({ avatarUrl, userId, date, title, content }) =>
     const[user, setUser] = useState([]);
     const[foundUser, setFoundUser] = useState(false);
 
+    const newDate = new Intl.DateTimeFormat('pt-br', {
+        dateStyle: "short",
+        timeStyle: "short",
+    }).format(Date.parse(date))
+
     useEffect(() => {
         async function getUserInfo() {
             try{
@@ -53,7 +58,7 @@ return(
                     </div>
                     <div className="ml-4">
                         <h3 className="font-bold">{thisUser.name}</h3>
-                        <p className="text-sm text-gray-600">{date} - {title}</p>
+                        <p className="text-sm text-gray-600">{newDate} - {title}</p>
                     </div>
                 </div>
                 <p className="mt-4 text-gray-800">
