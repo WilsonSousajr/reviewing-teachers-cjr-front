@@ -14,12 +14,13 @@ interface Review {
     updatedAt: string;
   }
 interface Props{
-    deleteRoute: string
     userName: string;
     userDepartament: string;
     userEmail: string;
     userPicture: string;
     reviews: Review[]
+    deleteRoute: string
+    updateRoute: string
 }
 
 const UserPage: React.FC<Props> = ({deleteRoute, userDepartament, userEmail, userName, userPicture, reviews}) => {
