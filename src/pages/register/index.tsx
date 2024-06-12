@@ -10,13 +10,14 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
+import Link from 'next/link';
 
 const validationSchema = Yup.object().shape({
-    name: Yup.string().required('Name is required'),
-    email: Yup.string().email('Invalid email').required('Email is required'),
-    password: Yup.string().required('No password provided.').min(8, 'Password is too short - should be 8 chars minimum.'),
-    course: Yup.string().required('No course provided'),
-    departament: Yup.string().required('No department provided'),
+    name: Yup.string().required('Nome é obrigatório'),
+    email: Yup.string().email('Email inválido').required('Email é obrigatório'),
+    password: Yup.string().required('Senha é obrigatória').min(8, 'A senha deve ter no mínimo 8 caracteres.'),
+    course: Yup.string().required('Curso é obrigatório'),
+    departament: Yup.string().required('Departamento é obrigatório'),
 });
 
 const initialValues = {
@@ -36,23 +37,32 @@ const RegisterForm = () => {
         try {
             const formData = new FormData();
             Object.keys(values).forEach(key => {
-                formData.append(key, values[key]);
+                if (values[key]) {
+                    formData.append(key, values[key]);
+                }
             });
 
-            await axios.post('http://localhost:3333/users', formData, {
+            const response = await axios.post('http://localhost:3333/auth/register', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
             });
-            
-            toast.success('Usuário criado com sucesso!', {
-                position: "top-right",
-            });
-            
-            resetForm(); 
-            setImagePreview(DefaultUser); 
-            router.push('/'); 
-            console.log("Redirected")
+
+            const { access_token } = response.data;
+
+            if (access_token) {
+                localStorage.setItem('token', access_token);
+                toast.success('Usuário criado com sucesso!', {
+                    position: "top-right",
+                });
+
+                resetForm();
+                setImagePreview(DefaultUser);
+                router.push('/feed/logged');
+                console.log("Redirected");
+            } else {
+                throw new Error('Token não recebido');
+            }
         } catch (error) {
             toast.error('Erro ao criar usuário!', {
                 position: "top-right",
@@ -94,13 +104,15 @@ const RegisterForm = () => {
                             <Form className="flex flex-col items-center">
                                 <div className="mb-4">
                                     <label htmlFor="picture">
-                                        <Image
-                                            src={imagePreview}
-                                            alt="Preview"
-                                            className="rounded-full"
-                                            width={150}
-                                            height={150}
-                                        />
+                                        <div className="image-container">
+                                            <Image
+                                                src={imagePreview}
+                                                alt="Preview"
+                                                className="image"
+                                                width={150}
+                                                height={150}
+                                            />
+                                        </div>
                                     </label>
                                     <input
                                         id="picture"
@@ -121,15 +133,20 @@ const RegisterForm = () => {
                                 <ErrorMessage name="course" component="div" className="text-red-500" />
                                 <Field className="my-2 py-5 pr-96 rounded-xl text-black text-xl pl-4" name="departament" placeholder="Departamento" />
                                 <ErrorMessage name="departament" component="div" className="text-red-500" />
-                                <button type="submit" className="mt-5 bg-lightblue text-2xl py-4 px-12 rounded-lg outline" disabled={isSubmitting}>
-                                    Criar Conta
-                                </button>
+                                <div className='flex gap-6'>
+                                    <button type="submit" className="mt-5 bg-lightblue text-2xl py-4 px-12 rounded-lg outline" disabled={isSubmitting}>
+                                        Criar conta
+                                    </button>
+                                    <button type="button" className="mt-5 bg-lightblue text-2xl py-4 px-12 rounded-lg outline">
+                                        <Link href={"/login"}>Fazer login</Link>
+                                    </button>
+                                </div>
                             </Form>
                         )}
                     </Formik>
                 </div>
             </div>
-            <ToastContainer /> 
+            <ToastContainer />
         </main>
     );
 }
