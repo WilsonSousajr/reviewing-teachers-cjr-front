@@ -24,7 +24,7 @@ function LogFeed() {
               const response = await axios.get(teachersRoute);
               setTeachers(response.data);
               setNewTeachers(teachers.slice(0, 6))
-              console.log("Teachers fetched: ", response.data);
+            
           }
           catch(error){
               console.error("Error fetching teachers: ", error);
