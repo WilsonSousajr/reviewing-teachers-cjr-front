@@ -1,4 +1,4 @@
-import UnloggedHeader from "@/components/Header/unloggedHeader";
+import UnloggedHeader from "@/components/Header/UnloggedHeader";
 import UserPage from "@/components/UserUnlogged/UserPage";
 import axios from "axios";
 import type { NextPage } from "next";

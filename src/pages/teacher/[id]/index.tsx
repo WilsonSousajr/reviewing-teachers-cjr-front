@@ -1,5 +1,5 @@
 'use client'
-import UnloggedHeader from "@/components/Header/unloggedHeader"
+import UnloggedHeader from "@/components/Header/UnloggedHeader"
 import TeacherProfileHeader from "@/components/Teacher/TeacherProfileHeader"
 import Review from "@/components/Teacher/Reviews"
 import axios from 'axios';
