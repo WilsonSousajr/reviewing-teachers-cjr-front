@@ -21,8 +21,9 @@ const AvaliacaoModal: React.FC<AvaliacaoModalProps> = ({ isOpen, onClose }) => {
     { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }
   ) => {
     //enviar os dados do formulário (autenticação)
-    const getProf = await axios.get('http://localhost:3333/teachers/name${values.nomeProf}')
-    const getDis = await axios.get('http://localhost:3333/disciplines/name${values.nomeDisciplina}')
+    const getProf = await axios.get(`http://localhost:3333/teachers/name${values.nomeProf}`)
+    const getDis = await axios.get(`http://localhost:3333/disciplines/name${values.nomeDisciplina}`)
+
 
     const requisition = {
           userId: 1, //! Tem que mudar isso aqui, por enquanto apenas o user 1 consegue comentar, mas pelo visto precisa da autenticacao
@@ -31,9 +32,9 @@ const AvaliacaoModal: React.FC<AvaliacaoModalProps> = ({ isOpen, onClose }) => {
           title: "",
           content: values.textoAvaliacao
     }
-    const post = await axios.post("http://localhost:3333/reviews", requisition)
 
-    console.log(post)
+
+    const post = await axios.post("http://localhost:3333/reviews", requisition)
 
     setTimeout(() => {
       setSubmitting(false);
