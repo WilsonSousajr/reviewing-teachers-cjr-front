@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import logo from "/public/logo.png";
-import FaComment from "../../images/FaComment.png";
 import axios from "axios";
 
 interface Props {
@@ -25,7 +23,7 @@ interface User{
 }
 
 const Review: React.FC<Props> = ({ avatarUrl, userId, date, title, content }) => {
-    const[user, setUser] = useState([]);
+    const[user, setUser] = useState<User | null>(null);
     const[foundUser, setFoundUser] = useState(false);
 
     const newDate = new Intl.DateTimeFormat('pt-br', {
@@ -37,27 +35,26 @@ const Review: React.FC<Props> = ({ avatarUrl, userId, date, title, content }) =>
         async function getUserInfo() {
             try{
                 const response = await axios.get('http://localhost:3333/users/'+userId);
-                setUser(response.data) 
+                setUser(response.data);
+                setFoundUser(true);
             }catch(error){
                 console.error("Error fetching user: ", error);
-            }finally{
-                setFoundUser(true);
+                setFoundUser(false);
             }
         }
         getUserInfo();
-    },[])
+    },[userId]);
 
-return(
-    <>
-    {foundUser? (
-        user.map((thisUser: User, index) => (
-            <div key={index} className="bg-white rounded-lg shadow-md p-6 mb-4">
+    return(
+        <>
+        {foundUser && user ? (
+            <div className="bg-white rounded-lg shadow-md p-6 mb-4">
                 <div className="flex items-center">
                     <div className="relative w-12 h-12">
-                        <img className="rounded-full w-full h-full" src={avatarUrl} alt="Profile Picture" />
+                        <img className="rounded-full w-full h-full" src={user.picture} alt="Profile Picture" />
                     </div>
                     <div className="ml-4">
-                        <h3 className="font-bold">{thisUser.name}</h3>
+                        <h3 className="font-bold">{user.name}</h3>
                         <p className="text-sm text-gray-600">{newDate} - {title}</p>
                     </div>
                 </div>
@@ -73,16 +70,15 @@ return(
                     </div>
                 </div>
             </div>
-        ))
-    ):(
-        <div key={1} className="bg-white rounded-lg shadow-md p-6 mb-4">
+        ) : (
+            <div className="bg-white rounded-lg shadow-md p-6 mb-4">
                 <div className="flex items-center">
                     <div className="relative w-12 h-12">
                         <img className="rounded-full w-full h-full" src={avatarUrl} alt="Finding User" />
                     </div>
                     <div className="ml-4">
                         <h3 className="font-bold">Carregando Usuário</h3>
-                        <p className="text-sm text-gray-600">{date} - {title}</p>
+                        <p className="text-sm text-gray-600">{newDate} - {title}</p>
                     </div>
                 </div>
                 <p className="mt-4 text-gray-800">
@@ -97,9 +93,8 @@ return(
                     </div>
                 </div>
             </div>
-    )}
-
-    </>
+        )}
+        </>
     )
 }
 
