@@ -22,7 +22,7 @@ const Header: React.FC<HeaderProps> = ({ profileImageUrl }) => {
         <button className='hover:text-gray-400'>
           <IoIosNotifications size={24} />
         </button>
-        <Link href="/user/logged" passHref>
+        <Link href="/user/1/logged" passHref>
           <button className='hover:text-gray-400'>
             {profileImageUrl ? (
               <Image src={profileImageUrl} alt="Profile Image" width={24} height={24} className="rounded-full" />
