@@ -5,8 +5,7 @@ export default function unllogedFeed(){
     return(
         <main>
             <UnloggedHeader />    
-            <Feed />
-                   
+            <Feed />    
         </main>
     )
 }
