@@ -108,13 +108,13 @@ function LogFeed() {
                 className="z-10 bg-slate-300 px-2 divide-y divide-black rounded-lg shadow w-60 ml-[-7rem] mb-[-6rem] overflow-visible mt-[3px]"
               >
                 <a className="text-black py-1 px-3 block" href="">
-                  Link1
+                  Nome
                 </a>
                 <a className="text-black py-1 px-3 block" href="">
-                  Link2
+                  Matéria
                 </a>
                 <a className="text-black py-1 px-3 block" href="">
-                  Link3
+                  Data
                 </a>
               </div>
             )}
