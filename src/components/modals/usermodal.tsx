@@ -3,6 +3,8 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { useRouter } from "next/router";
+
 interface UserModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -24,6 +26,7 @@ const UserModal: React.FC<UserModalProps> = ({ isOpen, onClose, updateRoute, nam
     senhaNova: "",
     confirmSenhaNova: "",
   };
+  const router = useRouter()
   
   const validateCurrentPassword = (inputPassword: string) => {
     // Mock function to simulate password check
@@ -66,6 +69,7 @@ const UserModal: React.FC<UserModalProps> = ({ isOpen, onClose, updateRoute, nam
 
     setTimeout(() => {
       setSubmitting(false);
+      router.reload()
       toast.success("Perfil editado com sucesso!");
     }, 2000);
   };
