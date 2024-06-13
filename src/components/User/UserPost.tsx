@@ -8,6 +8,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { useRouter } from "next/router";
 
 interface UserPostProps {
+  id: number;
   avatarUrl: string;
   userName: string;
   date: string;
@@ -17,6 +18,7 @@ interface UserPostProps {
 }
 
 const UserPost: React.FC<UserPostProps> = ({
+  id,
   avatarUrl,
   userName,
   date,
