@@ -17,20 +17,28 @@ const EditAvaliationModal: React.FC<EditAvaliationModalProps> = ({ isOpen, onClo
     textoAvaliacao: currentPost,
   };
 
-  const handleSubmit = (
+  const router = useRouter()
+  const handleSubmit = async(
     values: any,
     { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }
   ) => {
     //enviar os dados do formulário (autenticação)
-
-    setTimeout(() => {
-      setSubmitting(false);
+    try{
+      const response = await axios.patch(("http://localhost:3333/reviews/"+id), {
+        "content": values.textoAvaliacao
+      })
+      console.log("Post modificado com sucesso: ", response.data)
       toast.success("Avaliação editada com sucesso!");
-    }, 2000);
+    }catch(error){
+      console.error("Erro ao editar post: ", error)
+    }finally{
+      setSubmitting(false);
+      router.reload()
+    }
   };
 
   const validationSchema = Yup.object({
-    textoComentario: Yup.string().required(
+    textoAvaliacao: Yup.string().required(
       "O texto da avaliação é obrigatório."
     ),
   });
