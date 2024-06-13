@@ -14,7 +14,7 @@ interface EditAvaliationModalProps {
 
 const EditAvaliationModal: React.FC<EditAvaliationModalProps> = ({ isOpen, onClose, id, currentPost }) => {
   const initialValues = {
-    textoAvaliacao: "",
+    textoAvaliacao: currentPost,
   };
 
   const handleSubmit = (
