@@ -19,9 +19,6 @@ const Header: React.FC<HeaderProps> = ({ profileImageUrl }) => {
         </div>
       </Link>
       <div className='flex space-x-4'>
-        <button className='hover:text-gray-400'>
-          <IoIosNotifications size={24} />
-        </button>
         <Link href="/user/1/logged" passHref>
           <button className='hover:text-gray-400'>
             {profileImageUrl ? (
