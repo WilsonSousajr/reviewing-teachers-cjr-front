@@ -87,7 +87,7 @@ const UserPost: React.FC<UserPostProps> = ({
             >
             <FaRegEdit className="mr-2" />
           </button>{" "}
-          {<EditAvaliationModalProps isOpen={modalEditIsOpen} onClose={handleOpenEditModal} />}
+          {<EditAvaliationModalProps isOpen={modalEditIsOpen} onClose={handleOpenEditModal} id={id} currentPost={content} />}
           <button className="flex items-center text-gray-600 hover:text-gray-800" onClick={deletePost}>
             <FaTrash className="mr-2" />
           </button>

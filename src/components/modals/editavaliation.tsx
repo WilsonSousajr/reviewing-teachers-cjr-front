@@ -6,9 +6,11 @@ import { toast } from "react-toastify";
 interface EditAvaliationModalProps {
   isOpen: boolean;
   onClose: () => void;
+  id: number;
+  currentPost: string
 }
 
-const EditAvaliationModal: React.FC<EditAvaliationModalProps> = ({ isOpen, onClose }) => {
+const EditAvaliationModal: React.FC<EditAvaliationModalProps> = ({ isOpen, onClose, id, currentPost }) => {
   const initialValues = {
     textoAvaliacao: "",
   };
