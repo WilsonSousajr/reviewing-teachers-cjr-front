@@ -3,6 +3,9 @@ import Image from "next/image";
 import { FaComment, FaShareSquare, FaRegEdit, FaTrash } from "react-icons/fa";
 import CommentModalProps from "../modals/commentmodal";
 import EditAvaliationModalProps from "../modals/editavaliation";
+import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import { useRouter } from "next/router";
 
 interface UserPostProps {
   avatarUrl: string;
@@ -22,6 +25,16 @@ const UserPost: React.FC<UserPostProps> = ({
   commentsCount,
 }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const router = useRouter()
+  function deletePost(){
+    axios.delete(("http://localhost:3333/reviews/"+id))
+    .then(response =>{
+      console.log("Post deleted: ", response)
+      toast.success("Comentário deletado com sucesso!");
+      router.reload()
+    })
+  }
 
   function handleOpenModal() {
     setModalIsOpen(!modalIsOpen);
