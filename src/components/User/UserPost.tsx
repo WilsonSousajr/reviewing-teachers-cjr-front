@@ -48,6 +48,7 @@ const UserPost: React.FC<UserPostProps> = ({
     setModalEditIsOpen(!modalEditIsOpen);
   }
   return (
+    <>
     <div className="bg-white rounded-lg shadow-md p-6 mb-4">
       <div className="flex items-center">
         <div className="relative w-12 h-12">
@@ -56,7 +57,7 @@ const UserPost: React.FC<UserPostProps> = ({
             alt="Profile Picture"
             className="rounded-full"
             layout="fill"
-          />
+            />
         </div>
         <div className="ml-4">
           <h3 className="font-bold">{userName}</h3>
@@ -71,7 +72,7 @@ const UserPost: React.FC<UserPostProps> = ({
           <button
             className="flex items-center text-gray-600 hover:text-gray-800"
             onClick={handleOpenModal}
-          >
+            >
             <FaComment className="mr-2" /> {commentsCount} comentários
           </button>{" "}
           {<CommentModalProps isOpen={modalIsOpen} onClose={handleOpenModal} />}
@@ -83,16 +84,17 @@ const UserPost: React.FC<UserPostProps> = ({
           <button
             className="flex items-center text-gray-600 hover:text-gray-800"
             onClick={handleOpenEditModal}
-          >
+            >
             <FaRegEdit className="mr-2" />
           </button>{" "}
           {<EditAvaliationModalProps isOpen={modalEditIsOpen} onClose={handleOpenEditModal} />}
-          <button className="flex items-center text-gray-600 hover:text-gray-800">
+          <button className="flex items-center text-gray-600 hover:text-gray-800" onClick={deletePost}>
             <FaTrash className="mr-2" />
           </button>
         </div>
       </div>
     </div>
+    </>
   );
 };
 
