@@ -1,8 +1,42 @@
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import TeacherBox from "./Teacher-box/TeacherBox";
 import AvaliacaoModalProps from "../modals/modal";
+import axios from "axios";
+import Link from "next/link";
+
+interface Teacher {
+  id: number;
+  name: string;
+  departament: string;
+  createdAt: string;
+  updatedAt: string;
+}
 
 function LogFeed() {
+  const [teachers, setTeachers] = useState([]);
+  const [new_teachers, setNewTeachers] = useState([]);
+  const [foundTeachers, setFoundTeachers] = useState(false);
+  const teachersRoute = 'http://localhost:3333/teachers/';
+
+  useEffect(() => {
+      async function getTeachers(){
+          try{
+              const response = await axios.get(teachersRoute);
+              setTeachers(response.data);
+              setNewTeachers(teachers.slice(0, 6))
+            
+          }
+          catch(error){
+              console.error("Error fetching teachers: ", error);
+          }
+          finally{
+              setFoundTeachers(true);
+          }
+          
+      }
+      getTeachers();
+  })
+  
   const [dropdownAberto, setDropdownAberto] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -28,36 +62,14 @@ function LogFeed() {
           <div className="flex flex-col items-center">
             <div className="justify-start grid grid-cols-6 gap-y-6 overflow-hidden mb-8">
               {/* Usage: <TeacherBox name='-name-' ocuppation='-ocuppation-' picture='-url-'/> */}
-              <TeacherBox
-                name="Nome"
-                ocuppation="Disciplina"
-                picture="https://s3-alpha-sig.figma.com/img/e698/2e6c/845dc909c50d919bd3b40deeb417a8bb?Expires=1716768000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=FZiqoDb4kpkf8y1Rb0h1gSXcj~3tuSrBKatmqFBB~rM5qtetn6EzBst4kViv6~3B7Cobb9vkzQlQ0hqub1U-aREGatSK9wNxj3SuB20fHnwpAtzoo9cY8v60JfJSUHlnrPnJx3I5smNSa-ZSpkT~c~n7vB60EFPDZ2ECkDAxzVsIGEhxF67vSwmvPjw8htnS83MxzoMqY4nniUng8PkHwncTIgwU2hZx7lDiNMjl6pLDPMTQ3D-0eFZ-b9OKFI-nFgPvDx0KusBaq9s0F~g4JyQIlETI-ogtyBL1GJ-LobiSSDvXcM8Qea7m0P79KGjyo7ueVqHRKZk9MBx0Ouy2yw__"
-              />
-              <TeacherBox
-                name="Nome"
-                ocuppation="Disciplina"
-                picture="https://s3-alpha-sig.figma.com/img/e698/2e6c/845dc909c50d919bd3b40deeb417a8bb?Expires=1716768000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=FZiqoDb4kpkf8y1Rb0h1gSXcj~3tuSrBKatmqFBB~rM5qtetn6EzBst4kViv6~3B7Cobb9vkzQlQ0hqub1U-aREGatSK9wNxj3SuB20fHnwpAtzoo9cY8v60JfJSUHlnrPnJx3I5smNSa-ZSpkT~c~n7vB60EFPDZ2ECkDAxzVsIGEhxF67vSwmvPjw8htnS83MxzoMqY4nniUng8PkHwncTIgwU2hZx7lDiNMjl6pLDPMTQ3D-0eFZ-b9OKFI-nFgPvDx0KusBaq9s0F~g4JyQIlETI-ogtyBL1GJ-LobiSSDvXcM8Qea7m0P79KGjyo7ueVqHRKZk9MBx0Ouy2yw__"
-              />
-              <TeacherBox
-                name="Nome"
-                ocuppation="Disciplina"
-                picture="https://s3-alpha-sig.figma.com/img/e698/2e6c/845dc909c50d919bd3b40deeb417a8bb?Expires=1716768000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=FZiqoDb4kpkf8y1Rb0h1gSXcj~3tuSrBKatmqFBB~rM5qtetn6EzBst4kViv6~3B7Cobb9vkzQlQ0hqub1U-aREGatSK9wNxj3SuB20fHnwpAtzoo9cY8v60JfJSUHlnrPnJx3I5smNSa-ZSpkT~c~n7vB60EFPDZ2ECkDAxzVsIGEhxF67vSwmvPjw8htnS83MxzoMqY4nniUng8PkHwncTIgwU2hZx7lDiNMjl6pLDPMTQ3D-0eFZ-b9OKFI-nFgPvDx0KusBaq9s0F~g4JyQIlETI-ogtyBL1GJ-LobiSSDvXcM8Qea7m0P79KGjyo7ueVqHRKZk9MBx0Ouy2yw__"
-              />
-              <TeacherBox
-                name="Nome"
-                ocuppation="Disciplina"
-                picture="https://s3-alpha-sig.figma.com/img/e698/2e6c/845dc909c50d919bd3b40deeb417a8bb?Expires=1716768000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=FZiqoDb4kpkf8y1Rb0h1gSXcj~3tuSrBKatmqFBB~rM5qtetn6EzBst4kViv6~3B7Cobb9vkzQlQ0hqub1U-aREGatSK9wNxj3SuB20fHnwpAtzoo9cY8v60JfJSUHlnrPnJx3I5smNSa-ZSpkT~c~n7vB60EFPDZ2ECkDAxzVsIGEhxF67vSwmvPjw8htnS83MxzoMqY4nniUng8PkHwncTIgwU2hZx7lDiNMjl6pLDPMTQ3D-0eFZ-b9OKFI-nFgPvDx0KusBaq9s0F~g4JyQIlETI-ogtyBL1GJ-LobiSSDvXcM8Qea7m0P79KGjyo7ueVqHRKZk9MBx0Ouy2yw__"
-              />
-              <TeacherBox
-                name="Nome"
-                ocuppation="Disciplina"
-                picture="https://s3-alpha-sig.figma.com/img/e698/2e6c/845dc909c50d919bd3b40deeb417a8bb?Expires=1716768000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=FZiqoDb4kpkf8y1Rb0h1gSXcj~3tuSrBKatmqFBB~rM5qtetn6EzBst4kViv6~3B7Cobb9vkzQlQ0hqub1U-aREGatSK9wNxj3SuB20fHnwpAtzoo9cY8v60JfJSUHlnrPnJx3I5smNSa-ZSpkT~c~n7vB60EFPDZ2ECkDAxzVsIGEhxF67vSwmvPjw8htnS83MxzoMqY4nniUng8PkHwncTIgwU2hZx7lDiNMjl6pLDPMTQ3D-0eFZ-b9OKFI-nFgPvDx0KusBaq9s0F~g4JyQIlETI-ogtyBL1GJ-LobiSSDvXcM8Qea7m0P79KGjyo7ueVqHRKZk9MBx0Ouy2yw__"
-              />
-              <TeacherBox
-                name="Nome"
-                ocuppation="Disciplina"
-                picture="https://s3-alpha-sig.figma.com/img/e698/2e6c/845dc909c50d919bd3b40deeb417a8bb?Expires=1716768000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=FZiqoDb4kpkf8y1Rb0h1gSXcj~3tuSrBKatmqFBB~rM5qtetn6EzBst4kViv6~3B7Cobb9vkzQlQ0hqub1U-aREGatSK9wNxj3SuB20fHnwpAtzoo9cY8v60JfJSUHlnrPnJx3I5smNSa-ZSpkT~c~n7vB60EFPDZ2ECkDAxzVsIGEhxF67vSwmvPjw8htnS83MxzoMqY4nniUng8PkHwncTIgwU2hZx7lDiNMjl6pLDPMTQ3D-0eFZ-b9OKFI-nFgPvDx0KusBaq9s0F~g4JyQIlETI-ogtyBL1GJ-LobiSSDvXcM8Qea7m0P79KGjyo7ueVqHRKZk9MBx0Ouy2yw__"
-              />
+              {foundTeachers? (
+                            new_teachers.map((teacher: Teacher, index) =>(
+                            <Link href={"/teacher/"+teacher.id} key={index} passHref>
+                                <TeacherBox name={teacher.name} ocuppation={teacher.departament} picture='https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small_2x/default-avatar-profile-icon-of-social-media-user-vector.jpg'></TeacherBox>
+                            </Link>
+                            ))
+                        ) : 
+                        (<span>Carregando professores ...</span>)}
             </div>
             <hr className="border-black leading-3 w-[90%] mb-8" />
           </div>
@@ -96,13 +108,13 @@ function LogFeed() {
                 className="z-10 bg-slate-300 px-2 divide-y divide-black rounded-lg shadow w-60 ml-[-7rem] mb-[-6rem] overflow-visible mt-[3px]"
               >
                 <a className="text-black py-1 px-3 block" href="">
-                  Link1
+                  Nome
                 </a>
                 <a className="text-black py-1 px-3 block" href="">
-                  Link2
+                  Matéria
                 </a>
                 <a className="text-black py-1 px-3 block" href="">
-                  Link3
+                  Data
                 </a>
               </div>
             )}
@@ -113,36 +125,14 @@ function LogFeed() {
           <div className="flex flex-col items-center">
             <div className="justify-start grid grid-cols-6 gap-y-6 overflow-hidden mb-8">
               {/* Usage: <TeacherBox name='-name-' ocuppation='-ocuppation-' picture='-url-'/> */}
-              <TeacherBox
-                name="Nome"
-                ocuppation="Disciplina"
-                picture="https://s3-alpha-sig.figma.com/img/e698/2e6c/845dc909c50d919bd3b40deeb417a8bb?Expires=1716768000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=FZiqoDb4kpkf8y1Rb0h1gSXcj~3tuSrBKatmqFBB~rM5qtetn6EzBst4kViv6~3B7Cobb9vkzQlQ0hqub1U-aREGatSK9wNxj3SuB20fHnwpAtzoo9cY8v60JfJSUHlnrPnJx3I5smNSa-ZSpkT~c~n7vB60EFPDZ2ECkDAxzVsIGEhxF67vSwmvPjw8htnS83MxzoMqY4nniUng8PkHwncTIgwU2hZx7lDiNMjl6pLDPMTQ3D-0eFZ-b9OKFI-nFgPvDx0KusBaq9s0F~g4JyQIlETI-ogtyBL1GJ-LobiSSDvXcM8Qea7m0P79KGjyo7ueVqHRKZk9MBx0Ouy2yw__"
-              />
-              <TeacherBox
-                name="Nome"
-                ocuppation="Disciplina"
-                picture="https://s3-alpha-sig.figma.com/img/e698/2e6c/845dc909c50d919bd3b40deeb417a8bb?Expires=1716768000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=FZiqoDb4kpkf8y1Rb0h1gSXcj~3tuSrBKatmqFBB~rM5qtetn6EzBst4kViv6~3B7Cobb9vkzQlQ0hqub1U-aREGatSK9wNxj3SuB20fHnwpAtzoo9cY8v60JfJSUHlnrPnJx3I5smNSa-ZSpkT~c~n7vB60EFPDZ2ECkDAxzVsIGEhxF67vSwmvPjw8htnS83MxzoMqY4nniUng8PkHwncTIgwU2hZx7lDiNMjl6pLDPMTQ3D-0eFZ-b9OKFI-nFgPvDx0KusBaq9s0F~g4JyQIlETI-ogtyBL1GJ-LobiSSDvXcM8Qea7m0P79KGjyo7ueVqHRKZk9MBx0Ouy2yw__"
-              />
-              <TeacherBox
-                name="Nome"
-                ocuppation="Disciplina"
-                picture="https://s3-alpha-sig.figma.com/img/e698/2e6c/845dc909c50d919bd3b40deeb417a8bb?Expires=1716768000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=FZiqoDb4kpkf8y1Rb0h1gSXcj~3tuSrBKatmqFBB~rM5qtetn6EzBst4kViv6~3B7Cobb9vkzQlQ0hqub1U-aREGatSK9wNxj3SuB20fHnwpAtzoo9cY8v60JfJSUHlnrPnJx3I5smNSa-ZSpkT~c~n7vB60EFPDZ2ECkDAxzVsIGEhxF67vSwmvPjw8htnS83MxzoMqY4nniUng8PkHwncTIgwU2hZx7lDiNMjl6pLDPMTQ3D-0eFZ-b9OKFI-nFgPvDx0KusBaq9s0F~g4JyQIlETI-ogtyBL1GJ-LobiSSDvXcM8Qea7m0P79KGjyo7ueVqHRKZk9MBx0Ouy2yw__"
-              />
-              <TeacherBox
-                name="Nome"
-                ocuppation="Disciplina"
-                picture="https://s3-alpha-sig.figma.com/img/e698/2e6c/845dc909c50d919bd3b40deeb417a8bb?Expires=1716768000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=FZiqoDb4kpkf8y1Rb0h1gSXcj~3tuSrBKatmqFBB~rM5qtetn6EzBst4kViv6~3B7Cobb9vkzQlQ0hqub1U-aREGatSK9wNxj3SuB20fHnwpAtzoo9cY8v60JfJSUHlnrPnJx3I5smNSa-ZSpkT~c~n7vB60EFPDZ2ECkDAxzVsIGEhxF67vSwmvPjw8htnS83MxzoMqY4nniUng8PkHwncTIgwU2hZx7lDiNMjl6pLDPMTQ3D-0eFZ-b9OKFI-nFgPvDx0KusBaq9s0F~g4JyQIlETI-ogtyBL1GJ-LobiSSDvXcM8Qea7m0P79KGjyo7ueVqHRKZk9MBx0Ouy2yw__"
-              />
-              <TeacherBox
-                name="Nome"
-                ocuppation="Disciplina"
-                picture="https://s3-alpha-sig.figma.com/img/e698/2e6c/845dc909c50d919bd3b40deeb417a8bb?Expires=1716768000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=FZiqoDb4kpkf8y1Rb0h1gSXcj~3tuSrBKatmqFBB~rM5qtetn6EzBst4kViv6~3B7Cobb9vkzQlQ0hqub1U-aREGatSK9wNxj3SuB20fHnwpAtzoo9cY8v60JfJSUHlnrPnJx3I5smNSa-ZSpkT~c~n7vB60EFPDZ2ECkDAxzVsIGEhxF67vSwmvPjw8htnS83MxzoMqY4nniUng8PkHwncTIgwU2hZx7lDiNMjl6pLDPMTQ3D-0eFZ-b9OKFI-nFgPvDx0KusBaq9s0F~g4JyQIlETI-ogtyBL1GJ-LobiSSDvXcM8Qea7m0P79KGjyo7ueVqHRKZk9MBx0Ouy2yw__"
-              />
-              <TeacherBox
-                name="Nome"
-                ocuppation="Disciplina"
-                picture="https://s3-alpha-sig.figma.com/img/e698/2e6c/845dc909c50d919bd3b40deeb417a8bb?Expires=1716768000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=FZiqoDb4kpkf8y1Rb0h1gSXcj~3tuSrBKatmqFBB~rM5qtetn6EzBst4kViv6~3B7Cobb9vkzQlQ0hqub1U-aREGatSK9wNxj3SuB20fHnwpAtzoo9cY8v60JfJSUHlnrPnJx3I5smNSa-ZSpkT~c~n7vB60EFPDZ2ECkDAxzVsIGEhxF67vSwmvPjw8htnS83MxzoMqY4nniUng8PkHwncTIgwU2hZx7lDiNMjl6pLDPMTQ3D-0eFZ-b9OKFI-nFgPvDx0KusBaq9s0F~g4JyQIlETI-ogtyBL1GJ-LobiSSDvXcM8Qea7m0P79KGjyo7ueVqHRKZk9MBx0Ouy2yw__"
-              />
+              {foundTeachers? (
+                            teachers.map((teacher: Teacher, index) =>(
+                            <Link href={"/teacher/"+teacher.id} key={index} passHref>
+                                <TeacherBox name={teacher.name} ocuppation={teacher.departament} picture='https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small_2x/default-avatar-profile-icon-of-social-media-user-vector.jpg'></TeacherBox>
+                            </Link>
+                            ))
+                        ) : 
+                        (<span>Carregando professores ...</span>)}
             </div>
           </div>
         </div>

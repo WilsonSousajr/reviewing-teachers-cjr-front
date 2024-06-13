@@ -1,7 +1,4 @@
 import React from 'react';
-import Image from 'next/image';
-import banner from '/public/banner.png'
-import FaEnvelope from '@/images/FaEnvelope.png';
 
 interface UserProfileHeader {
     name: string;

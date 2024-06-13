@@ -2,30 +2,74 @@ import React from "react";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
+import axios from "axios";
+import { useRouter } from "next/router";
+
 interface UserModalProps {
   isOpen: boolean;
   onClose: () => void;
+  updateRoute: string
+  name: string
+  email: string
+  departament: string
+  course: string
+  password: string
 }
 
-const UserModal: React.FC<UserModalProps> = ({ isOpen, onClose }) => {
+const UserModal: React.FC<UserModalProps> = ({ isOpen, onClose, updateRoute, name, email, departament, course, password }) => {
   const initialValues = {
-    nome: "",
-    email: "",
-    curso: "",
-    departamento: "",
+    nome: name,
+    email: email,
+    curso: course,
+    departamento: departament,
     senhaAtual: "",
     senhaNova: "",
     confirmSenhaNova: "",
   };
+  const router = useRouter()
+  
+  const validateCurrentPassword = (inputPassword: string) => {
+    // Mock function to simulate password check
+    // Replace with actual authentication logic
+    return inputPassword === password;
+  };
 
-  const handleSubmit = (
+  
+  const handleSubmit = async(
     values: any,
     { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }
   ) => {
     //enviar os dados do formulário (autenticação)
+    if(values.senhaNova){
+      try{
+        const response = await axios.patch(updateRoute, {
+          "email": values.email,
+          "name": values.nome,
+          "departament": values.departamento,
+          "course": values.curso,
+          "password": values.senhaNova
+        })
+        console.log("Usuario modificado com sucesso: ", response.data);
+      }catch(error){
+        console.error("Erro ao editar o usuario: ", error)
+      }
+    }else{
+      try{
+        const response = await axios.patch(updateRoute, {
+          "email": values.email,
+          "name": values.nome,
+          "departament": values.departamento,
+          "course": values.curso
+        })
+        console.log("Usuario modificado com sucesso: ", response.data);
+      }catch(error){
+        console.error("Erro ao editar o usuario: ", error)
+      }
+    }
 
     setTimeout(() => {
       setSubmitting(false);
+      router.reload()
       toast.success("Perfil editado com sucesso!");
     }, 2000);
   };
@@ -35,6 +79,12 @@ const UserModal: React.FC<UserModalProps> = ({ isOpen, onClose }) => {
     email: Yup.string().required("O email é obrigatório."),
     curso: Yup.string().required("O curso é obrigatório."),
     departamento: Yup.string().required("O departamento é obrigatório."),
+    senhaAtual: Yup.string()
+      .required("A senha atual é obrigatória.")
+      .test("senhaAtual", "Senha atual incorreta.", (value) => validateCurrentPassword(value || "")),
+    senhaNova: Yup.string(),
+    confirmSenhaNova: Yup.string()
+      .oneOf([Yup.ref("senhaNova")], "As senhas não coincidem.")
   });
 
   return (
@@ -123,7 +173,7 @@ const UserModal: React.FC<UserModalProps> = ({ isOpen, onClose }) => {
                 </div>
                 <div className="mb-4">
                   <Field
-                    type="text"
+                    type="password"
                     name="senhaAtual"
                     placeholder="Senha atual"
                     className="w-full h-10 bg-white text-gray-600 px-4 rounded-full"
@@ -136,26 +186,26 @@ const UserModal: React.FC<UserModalProps> = ({ isOpen, onClose }) => {
                 </div>
                 <div className="mb-4">
                   <Field
-                    type="text"
-                    name="novaSenha"
+                    type="password"
+                    name="senhaNova"
                     placeholder="Nova senha"
                     className="w-full h-10 bg-white text-gray-600 px-4 rounded-full"
                   />
                   <ErrorMessage
-                    name="novaSenha"
+                    name="senhaNova"
                     component="div"
                     className="text-red-500 text-sm mt-1"
                   />
                 </div>
                 <div className="mb-4">
                   <Field
-                    type="text"
-                    name="confitmNovaSenha"
+                    type="password"
+                    name="confirmSenhaNova"
                     placeholder="Confirmar nova senha"
                     className="w-full h-10 bg-white text-gray-600 px-4 rounded-full"
                   />
                   <ErrorMessage
-                    name="confirmNovaSenha"
+                    name="confirmSenhaNova"
                     component="div"
                     className="text-red-500 text-sm mt-1"
                   />
