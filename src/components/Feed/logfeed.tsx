@@ -51,13 +51,7 @@ function LogFeed() {
   return (
     <>
       <div id="feed">
-        <div className="flex justify-end mr-28">
-          <input
-            placeholder="Buscar Professor(a)"
-            className="placeholder:flex placeholder:justify-center text-xl pr-40 pl-4 py-2 rounded-xl"
-          ></input>
-        </div>
-        <div id="new-teachers" className="mt-[-1rem]">
+        <div id="new-teachers" className="mt-[1.5rem]">
           <h2 className="text-3xl mb-4 pl-40">Novos Professores</h2>
           <div className="flex flex-col items-center">
             <div className="justify-start grid grid-cols-6 gap-y-6 overflow-hidden mb-8">
