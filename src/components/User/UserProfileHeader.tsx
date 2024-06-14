@@ -47,7 +47,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({ name, department,
                                 </div>
                             </div>
                             <div className="mt-4 flex flex-col gap-3 mr-10">
-                                <button className="bg-lightblue text-white text-xl py-1 px-8 rounded-xl outline outline-white outline-2 shadow-black shadow-md" onClick={handleOpenModal}>
+                                <button className="bg-lightblue text-white text-xl py-2 px-4 rounded-xl outline outline-white outline-2 shadow-black shadow-md flex items-center" onClick={handleOpenModal}>
                                 
                                     <FaUserEdit className="mr-2" /> Editar Perfil
                                 </button> 
@@ -64,7 +64,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({ name, department,
                                     />
                                 }
            
-                                <button className="bg-red-700 text-white text-xl py-1 px-8 rounded-xl outline outline-white outline-2 shadow-black shadow-md" onClick={handleDeleteModal}>
+                                <button className="bg-red-700 text-white text-xl py-2 px-4 rounded-xl outline outline-white outline-2 shadow-black shadow-md flex items-center" onClick={handleDeleteModal}>
                                     <FaTrash className="mr-2" /> Excluir Perfil
                                 </button>{
                                     <DeleteModal
