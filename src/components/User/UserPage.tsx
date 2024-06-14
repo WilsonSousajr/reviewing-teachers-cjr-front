@@ -27,7 +27,7 @@ interface Props{
 
 const UserPage: React.FC<Props> = ({deleteRoute, updateRoute, userDepartament, userCourse, userEmail, userPassword, userName, userPicture, reviews}) => {
     return (
-        <div className="max-w-4xl mx-auto mt-8 p-4">
+        <div className="max-w-4xl mx-auto mt-0 p-4">
             <UserProfileHeader 
                 name={userName}
                 department= {userDepartament}

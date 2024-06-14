@@ -4,6 +4,8 @@ import UserPage from "../../../../components/User/UserPage";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { FaArrowCircleLeft } from "react-icons/fa";
+import Link from "next/link";
 
 interface Review {
   id: number;
@@ -80,6 +82,13 @@ const User: NextPage = () => {
   return (
     <>
       <Header />
+      <Link href="/feed/logged" passHref>
+        <div className=" pt-4 pl-40 items-start">
+          <button id="voltar" className=" text-gray-600 hover:text-gray-800">
+            <FaArrowCircleLeft size={39} />
+          </button>
+        </div>
+      </Link>
       {!loadingUser ? (
         user ? (
           <UserPage
