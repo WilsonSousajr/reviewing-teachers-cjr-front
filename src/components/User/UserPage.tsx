@@ -48,6 +48,7 @@ const UserPage: React.FC<Props> = ({deleteRoute, updateRoute, userDepartament, u
                         key={index}
                         avatarUrl={userPicture}
                         userName={userName}
+                        id={post.id}
                         date={post.createdAt}
                         title={post.title}
                         content={post.content}
