@@ -13,7 +13,7 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ profileImageUrl }) => {
   return (
     <header className="bg-gray-800 text-white p-4 flex justify-between items-center">
-      <Link href="/" passHref>
+      <Link href="/feed/logged/" passHref>
         <div className="flex items-center">
           <Image src={Logo} alt="Logo da Universidade de Brasília" width={50} height={50} />
         </div>
