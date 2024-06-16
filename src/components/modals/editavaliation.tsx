@@ -1,7 +1,7 @@
 import React from "react";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
 import { useRouter } from "next/router";
 
@@ -9,7 +9,7 @@ interface EditAvaliationModalProps {
   isOpen: boolean;
   onClose: () => void;
   id: number;
-  currentPost: string
+  currentPost: string;
 }
 
 const EditAvaliationModal: React.FC<EditAvaliationModalProps> = ({ isOpen, onClose, id, currentPost }) => {
@@ -17,30 +17,40 @@ const EditAvaliationModal: React.FC<EditAvaliationModalProps> = ({ isOpen, onClo
     textoAvaliacao: currentPost,
   };
 
-  const router = useRouter()
-  const handleSubmit = async(
+  const router = useRouter();
+
+  const handleSubmit = async (
     values: any,
     { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }
   ) => {
-    //enviar os dados do formulário (autenticação)
-    try{
-      const response = await axios.patch(("http://localhost:3333/reviews/"+id), {
-        "content": values.textoAvaliacao
-      })
-      console.log("Post modificado com sucesso: ", response.data)
-      toast.success("Avaliação editada com sucesso!");
-    }catch(error){
-      console.error("Erro ao editar post: ", error)
-    }finally{
+    const token = localStorage.getItem("token");
+    if (!token) {
+      toast.error("Usuário não autenticado.");
       setSubmitting(false);
-      router.reload()
+      return;
+    }
+
+    try {
+      const response = await axios.patch(
+        `http://localhost:3333/reviews/${id}`,
+        { content: values.textoAvaliacao },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      console.log("Post modificado com sucesso: ", response.data);
+      toast.success("Avaliação editada com sucesso!");
+    } catch (error) {
+      console.error("Erro ao editar post: ", error);
+      toast.error("Erro ao editar a avaliação.");
+    } finally {
+      setSubmitting(false);
+      router.reload();
     }
   };
 
   const validationSchema = Yup.object({
-    textoAvaliacao: Yup.string().required(
-      "O texto da avaliação é obrigatório."
-    ),
+    textoAvaliacao: Yup.string().required("O texto da avaliação é obrigatório."),
   });
 
   return (
@@ -97,6 +107,7 @@ const EditAvaliationModal: React.FC<EditAvaliationModalProps> = ({ isOpen, onClo
               </Form>
             </Formik>
           </div>
+          <ToastContainer />
         </div>
       )}
     </>
