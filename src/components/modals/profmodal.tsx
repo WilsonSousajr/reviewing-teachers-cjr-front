@@ -21,7 +21,6 @@ const CreateProfModal: React.FC<CreateProfModalProps> = ({
     values: any,
     { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }
   ) => {
-    //enviar os dados do formulário (autenticação)
 
     setTimeout(() => {
       setSubmitting(false);
