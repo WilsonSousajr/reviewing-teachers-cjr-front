@@ -58,7 +58,7 @@ const RegisterForm = () => {
 
                 resetForm();
                 setImagePreview(DefaultUser);
-                router.push('/feed/logged');
+                router.push('/');
                 console.log("Redirected");
             } else {
                 throw new Error('Token não recebido');
