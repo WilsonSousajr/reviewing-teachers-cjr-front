@@ -17,11 +17,6 @@ const TeacherProfileHeader: React.FC<UserProfileHeaderProps> = ({ name, departme
                             <div className='flex flex-col items-start gap-2'> 
                                 <h1 className="text-5xl font-bold pb-6">{name}</h1>
                                 <p className="text-gray-600 pl-2">Departamento: {department}</p>
-                                <p className="text-gray-500 pl-4 text-sm">Aulas: {disciplines.map((name, index) => (
-                                    <span key={index}>
-                                        {name}{disciplines.length-1 === index? "": ", "}
-                                    </span>
-                                ))}</p>
                             </div>
                         </div>
                     </div>    
