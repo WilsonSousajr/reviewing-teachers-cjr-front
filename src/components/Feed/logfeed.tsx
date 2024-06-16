@@ -84,35 +84,7 @@ function LogFeed() {
               isOpen={modalIsOpen}
               onClose={handleOpenModal}
             />
-          }
-          <div className="block">
-            <button
-              onClick={toggleDropdown}
-              id="dropdownHoverButton"
-              data-dropdown-toggle="dropdownHover"
-              data-dropdown-trigger="hover"
-              type="button"
-              className="bg-lightblue text-white text-xl py-1 px-8 rounded-xl outline outline-white outline-2 shadow-black shadow-md"
-            >
-              Ordenar
-            </button>
-            {dropdownAberto && (
-              <div
-                id="dropdownHover"
-                className="z-10 bg-slate-300 px-2 divide-y divide-black rounded-lg shadow w-60 ml-[-7rem] mb-[-6rem] overflow-visible mt-[3px]"
-              >
-                <a className="text-black py-1 px-3 block" href="">
-                  Nome
-                </a>
-                <a className="text-black py-1 px-3 block" href="">
-                  Matéria
-                </a>
-                <a className="text-black py-1 px-3 block" href="">
-                  Data
-                </a>
-              </div>
-            )}
-          </div>
+          
         </div>
         <div id="every-teacher" className="mt-[-1rem]">
           <h2 className="text-3xl mb-4 pl-40">Todos os Professores</h2>
