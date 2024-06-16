@@ -35,7 +35,7 @@ const LoginForm = () => {
                 position: "top-right",
             });
 
-            router.push('/feed/logged');
+            router.push('/');
         } catch (error) {
             toast.error('Erro ao fazer login!', {
                 position: "top-right",
