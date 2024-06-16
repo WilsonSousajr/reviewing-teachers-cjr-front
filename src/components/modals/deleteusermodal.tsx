@@ -1,20 +1,40 @@
 import axios from "axios";
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import React from "react";
+import { toast, ToastContainer } from "react-toastify";
 
 interface DeleteModalProps {
   isOpen: boolean;
   onClose: () => void;
-  deleteRoute: string
+  deleteRoute: string;
 }
 
-const DeleteModal: React.FC<DeleteModalProps> = ({deleteRoute, isOpen, onClose }) => {
-  function deleteUser(){
-    axios.delete(deleteRoute)
-    .then(response => {
-      console.log("User deleted :", response)
-    })
-  }
+const DeleteModal: React.FC<DeleteModalProps> = ({ deleteRoute, isOpen, onClose }) => {
+  const router = useRouter();
+
+  const deleteUser = async () => {
+    try {
+      await axios.delete(deleteRoute, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+      });
+      console.log("User deleted");
+
+      localStorage.removeItem("token");
+
+      toast.success("Conta excluída com sucesso!", {
+        position: "top-right",
+      });
+
+      router.push("/");
+    } catch (error) {
+      console.error("Error deleting user:", error);
+
+      toast.error("Erro ao excluir a conta.", {
+        position: "top-right",
+      });
+    }
+  };
+
   return (
     <>
       {isOpen && (
@@ -29,13 +49,10 @@ const DeleteModal: React.FC<DeleteModalProps> = ({deleteRoute, isOpen, onClose }
             }}
           >
             <div className="bg-darkblue w-1/3 h-4/7 p-8 rounded-xl">
-              <div className=" w-fit h-1/3">
-                <h1 className="text-white text-3xl mb-4 ">
-                  Deseja excluir o seu perfil?
-                </h1>
-                <p className="text-white mt-4 mb-4 ">
-                  {" "}
-                  Todos os dados da conta serão apagados permanentemente
+              <div className="w-fit h-1/3">
+                <h1 className="text-white text-3xl mb-4">Deseja excluir o seu perfil?</h1>
+                <p className="text-white mt-4 mb-4">
+                  Todos os dados da conta serão apagados permanentemente.
                 </p>
               </div>
               <div className="flex gap-5 justify-end">
@@ -47,20 +64,19 @@ const DeleteModal: React.FC<DeleteModalProps> = ({deleteRoute, isOpen, onClose }
                 >
                   Voltar
                 </button>
-                <Link href={"/feed/logged"} passHref>
-                  <button
-                    onClick={deleteUser}
-                    type="button"
-                    className="bg-red-700 text-white text-xl py-1 px-8 rounded-xl outline outline-white outline-2 shadow-black shadow-md"
-                    >
-                    Excluir
-                  </button>
-                </Link>
+                <button
+                  onClick={deleteUser}
+                  type="button"
+                  className="bg-red-700 text-white text-xl py-1 px-8 rounded-xl outline outline-white outline-2 shadow-black shadow-md"
+                >
+                  Excluir
+                </button>
               </div>
             </div>
           </div>
         </>
       )}
+      <ToastContainer />
     </>
   );
 };
